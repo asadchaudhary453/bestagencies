@@ -4,7 +4,6 @@ import { Target, ShieldCheck, BarChart3, RefreshCw } from 'lucide-react'
 import { authors } from '@/lib/content'
 import { SITE } from '@/lib/site'
 import { PageHeader } from '@/components/layout/page-header'
-import { NewsletterCta } from '@/components/home/newsletter-cta'
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -244,8 +243,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      <NewsletterCta />
     </main>
   )
 }

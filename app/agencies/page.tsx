@@ -9,7 +9,7 @@ import {
 import { SITE } from '@/lib/site'
 import { PageHeader } from '@/components/layout/page-header'
 import { PostsGrid } from '@/components/posts/posts-grid'
-import { NewsletterCta } from '@/components/home/newsletter-cta'
+import { AdvertisementCard } from '@/components/ads/advertisement-card'
 import { cn } from '@/lib/utils'
 
 export const metadata: Metadata = {
@@ -72,8 +72,10 @@ export default async function AgenciesPage({
           ))}
         </div>
         <PostsGrid posts={posts} />
+        <div className="mt-12">
+          <AdvertisementCard variant="horizontal" />
+        </div>
       </section>
-      <NewsletterCta />
     </main>
   )
 }

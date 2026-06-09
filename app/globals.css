@@ -189,15 +189,17 @@
   [aria-disabled='true'] {
     cursor: not-allowed;
   }
-  /* Prevent iOS Safari from auto-zooming when focusing form controls
-     (any control under 16px triggers it). Keeps the visual size small via
-     the design classes on larger screens. */
-  @media (max-width: 640px) {
-    input,
-    select,
-    textarea {
-      font-size: 16px;
-    }
+}
+
+/* Prevent iOS Safari from auto-zooming when focusing form controls
+   (any control under 16px triggers it). Declared OUTSIDE the cascade
+   layers so it beats Tailwind utility classes like text-sm, which live
+   in the utilities layer and would otherwise win over @layer base. */
+@media (max-width: 767px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
   }
 }
 
@@ -289,43 +291,9 @@
   animation-delay: 0.3s;
 }
 
-/* Scroll reveal — GPU-only (opacity + transform), zero layout shift.
-   Hidden start state is applied ONLY after JS adds `.reveal-ready`, so
-   content is never invisible without JS and there is no CLS. */
-[data-reveal] {
-  transition:
-    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.reveal-ready [data-reveal]:not(.is-revealed) {
-  opacity: 0;
-  transform: translate3d(0, 20px, 0);
-}
-.reveal-ready [data-reveal][data-reveal='fade']:not(.is-revealed) {
-  transform: none;
-}
-.reveal-ready [data-reveal][data-reveal='left']:not(.is-revealed) {
-  transform: translate3d(-20px, 0, 0);
-}
-.reveal-ready [data-reveal][data-reveal='right']:not(.is-revealed) {
-  transform: translate3d(20px, 0, 0);
-}
-[data-reveal].is-revealed {
-  opacity: 1;
-  transform: none;
-}
-[data-reveal-delay='1'] {
-  transition-delay: 0.08s;
-}
-[data-reveal-delay='2'] {
-  transition-delay: 0.16s;
-}
-[data-reveal-delay='3'] {
-  transition-delay: 0.24s;
-}
-[data-reveal-delay='4'] {
-  transition-delay: 0.32s;
-}
+/* Scroll reveal animations are driven entirely by the Web Animations API in
+   components/scroll-reveal.tsx — no CSS hidden state, no attribute mutation,
+   so streaming hydration never sees a server/client mismatch. */
 
 /* Subtle, GPU-friendly image zoom for media cards on hover/focus */
 .media-zoom {
@@ -346,13 +314,6 @@
   .animate-fade-up,
   .animate-fade-in {
     animation: none;
-  }
-  [data-reveal] {
-    transition: none;
-  }
-  .reveal-ready [data-reveal]:not(.is-revealed) {
-    opacity: 1;
-    transform: none;
   }
   .media-zoom img {
     transition: none;

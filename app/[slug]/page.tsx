@@ -2,13 +2,14 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { Clock, Calendar, ArrowLeft } from 'lucide-react'
+import { Clock, Calendar, ArrowLeft, RefreshCw } from 'lucide-react'
 import {
   getAllPosts,
   getPost,
   getAuthor,
   getCategory,
   getRelatedPosts,
+  getOlderBlogPosts,
   formatDate,
 } from '@/lib/content'
 import { SITE } from '@/lib/site'
@@ -24,8 +25,12 @@ import {
   type TocItem,
 } from '@/components/article/table-of-contents'
 import { ShareButtons } from '@/components/article/share-buttons'
-import { AuthorBio } from '@/components/article/author-bio'
+import { ComparisonTable } from '@/components/article/comparison-table'
+import { ReadingProgress } from '@/components/article/reading-progress'
 import { RelatedPosts } from '@/components/article/related-posts'
+import { HelpfulLinks } from '@/components/article/helpful-links'
+import { WriteForUsWidget } from '@/components/article/write-for-us-widget'
+import { AdvertisementCard } from '@/components/ads/advertisement-card'
 import { CategoryBadge } from '@/components/posts/category-badge'
 
 export function generateStaticParams() {
@@ -78,6 +83,7 @@ export default async function PostPage({
   const author = getAuthor(post.author)
   const category = getCategory(post.category)
   const related = getRelatedPosts(post, 3)
+  const olderPosts = getOlderBlogPosts(post.publishedAt, post.slug, 5)
 
   const toc: TocItem[] = post.body
     .filter(
@@ -100,6 +106,7 @@ export default async function PostPage({
 
   return (
     <main>
+      <ReadingProgress />
       <ArticleJsonLd post={post} />
       <ItemListJsonLd post={post} />
       <BreadcrumbJsonLd
@@ -153,6 +160,13 @@ export default async function PostPage({
               <Clock className="h-4 w-4" aria-hidden="true" />
               {post.readingTime} min read
             </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+              <RefreshCw className="h-3 w-3" aria-hidden="true" />
+              Updated{' '}
+              <time dateTime={post.updatedAt}>
+                {formatDate(post.updatedAt)}
+              </time>
+            </span>
           </div>
         </div>
       </header>
@@ -200,40 +214,56 @@ export default async function PostPage({
             <ShareButtons slug={post.slug} title={post.title} />
           </div>
 
+          <ComparisonTable agencies={post.agencies} />
+
           <ArticleBody blocks={post.body} agencies={post.agencies} />
 
-          {/* Tags */}
-          <div className="mt-10 flex flex-wrap gap-2 border-t border-border pt-6">
-            {post.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground"
-              >
-                {tag}
-              </span>
-            ))}
+          <p className="mt-10 rounded-xl border border-border bg-accent/40 p-5 text-sm leading-relaxed text-muted-foreground">
+            Want your brand featured in front of decision-makers? Publish a
+            guest post or get a link insertion in our guides through{' '}
+            <a
+              href="https://aamax.co/service/guest-posts-and-link-insertions#place-order"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-primary transition-colors hover:text-primary/80"
+            >
+              AAMAX&apos;s guest post and link insertion service
+            </a>
+            .
+          </p>
+
+          <HelpfulLinks olderPosts={olderPosts} />
+
+          {/* Sponsored + Write for Us shown inline on small screens where the sidebar is hidden */}
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:hidden">
+            <AdvertisementCard variant="compact" />
+            <WriteForUsWidget />
           </div>
 
-          {author && (
-            <div className="mt-8">
-              <AuthorBio author={author} />
-            </div>
-          )}
-
-          <div className="mt-8">
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+            {category && (
+              <Link
+                href={`/category/${category.slug}`}
+                className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-primary/80"
+              >
+                <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+                More {category.shortName} guides
+              </Link>
+            )}
             <Link
               href="/agencies"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-primary/80"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
             >
-              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
               Back to all rankings
             </Link>
           </div>
         </article>
 
         <aside className="hidden lg:block">
-          <div className="sticky top-24">
+          <div className="sticky top-24 space-y-5">
             <TableOfContents items={toc} />
+            <AdvertisementCard variant="sidebar" />
+            <WriteForUsWidget />
           </div>
         </aside>
       </div>

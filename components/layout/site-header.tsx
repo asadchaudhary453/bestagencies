@@ -3,14 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import {
-  ArrowRight,
-  ChevronDown,
-  Menu,
-  Search,
-  Sparkles,
-  X,
-} from 'lucide-react'
+import { ArrowRight, ChevronDown, Menu, Search, X } from 'lucide-react'
 import { Logo } from '@/components/brand/logo'
 import { CategoryIcon } from '@/components/brand/category-icon'
 import { categories } from '@/lib/content/categories'
@@ -84,28 +77,6 @@ export function SiteHeader() {
 
   return (
     <>
-      {/* Announcement strip */}
-      <div className="relative overflow-hidden bg-ink text-ink-foreground">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 left-1/2 h-full w-[200%] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklch,var(--primary)_30%,transparent),transparent_60%)] opacity-70"
-        />
-        <div className="relative mx-auto flex max-w-6xl items-center justify-center gap-2 px-4 py-2 text-center text-xs sm:px-6">
-          <Sparkles className="h-3.5 w-3.5 shrink-0 text-primary" />
-          <p className="font-medium tracking-tight text-ink-foreground/90">
-            Independent agency rankings,{' '}
-            <span className="hidden sm:inline">vetted by our editorial team.</span>
-            <Link
-              href="/agencies"
-              className="ml-1.5 inline-flex items-center gap-0.5 font-semibold text-ink-foreground underline-offset-4 hover:underline"
-            >
-              Explore rankings
-              <ArrowRight className="h-3 w-3" />
-            </Link>
-          </p>
-        </div>
-      </div>
-
       {/* Main header */}
       <header
         className={cn(
@@ -229,10 +200,10 @@ export function SiteHeader() {
               )}
             </button>
             <Link
-              href="/agencies"
+              href="/write-for-us"
               className="group relative hidden items-center gap-1.5 overflow-hidden rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 sm:inline-flex"
             >
-              <span className="relative z-10">View Rankings</span>
+              <span className="relative z-10">Write for Us</span>
               <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               <span
                 aria-hidden="true"

@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { Mail } from 'lucide-react'
 import { Logo } from '@/components/brand/logo'
-import { NewsletterForm } from '@/components/newsletter-form'
 import { categories } from '@/lib/content/categories'
 import { SITE } from '@/lib/site'
 
@@ -12,11 +11,7 @@ const company = [
   { href: '/agencies', label: 'All Rankings' },
 ]
 
-const legal = [
-  { href: '/terms', label: 'Terms & Conditions' },
-  { href: '/contact', label: 'Editorial Policy' },
-  { href: '/about', label: 'Methodology' },
-]
+const legal = [{ href: '/terms', label: 'Terms & Conditions' }]
 
 export function SiteFooter() {
   return (
@@ -72,12 +67,12 @@ export function SiteFooter() {
             <h3 className="font-sans text-sm font-semibold text-foreground">
               Categories
             </h3>
-            <ul className="mt-4 space-y-2.5">
+            <ul className="mt-3 space-y-1">
               {categories.slice(0, 3).map((c) => (
                 <li key={c.slug}>
                   <Link
                     href={`/category/${c.slug}`}
-                    className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                    className="inline-block py-1.5 text-sm text-muted-foreground transition-colors hover:text-primary"
                   >
                     {c.shortName}
                   </Link>
@@ -86,7 +81,7 @@ export function SiteFooter() {
               <li>
                 <Link
                   href="/categories"
-                  className="text-sm font-semibold text-primary transition-colors hover:text-primary/80"
+                  className="inline-block py-1.5 text-sm font-semibold text-primary transition-colors hover:text-primary/80"
                 >
                   View all
                 </Link>
@@ -98,12 +93,12 @@ export function SiteFooter() {
             <h3 className="font-sans text-sm font-semibold text-foreground">
               Company
             </h3>
-            <ul className="mt-4 space-y-2.5">
+            <ul className="mt-3 space-y-1">
               {company.map((l) => (
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                    className="inline-block py-1.5 text-sm text-muted-foreground transition-colors hover:text-primary"
                   >
                     {l.label}
                   </Link>
@@ -114,12 +109,19 @@ export function SiteFooter() {
 
           <div className="col-span-2">
             <h3 className="font-sans text-sm font-semibold text-foreground">
-              Stay in the loop
+              Get in touch
             </h3>
-            <p className="mt-4 text-sm text-muted-foreground">
-              Monthly agency insights and fresh rankings, straight to your inbox.
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              Questions, feedback, or partnership enquiries — we&apos;d love to
+              hear from you.
             </p>
-            <NewsletterForm className="mt-4" />
+            <a
+              href={`mailto:${SITE.email}`}
+              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-primary/80"
+            >
+              <Mail className="h-4 w-4" aria-hidden="true" />
+              {SITE.email}
+            </a>
           </div>
         </div>
 
@@ -141,12 +143,12 @@ export function SiteFooter() {
               </a>
             </p>
           </div>
-          <ul className="flex flex-wrap items-center gap-4">
+          <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
             {legal.map((l) => (
               <li key={l.label}>
                 <Link
                   href={l.href}
-                  className="text-xs text-muted-foreground transition-colors hover:text-primary"
+                  className="inline-block py-2 text-xs text-muted-foreground transition-colors hover:text-primary"
                 >
                   {l.label}
                 </Link>

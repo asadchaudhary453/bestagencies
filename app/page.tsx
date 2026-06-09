@@ -7,7 +7,7 @@ import { Hero } from '@/components/home/hero'
 import { TrustBand } from '@/components/home/trust-band'
 import { CategoryGrid } from '@/components/home/category-grid'
 import { LatestTrending } from '@/components/home/latest-trending'
-import { NewsletterCta } from '@/components/home/newsletter-cta'
+import { AdvertisementCard } from '@/components/ads/advertisement-card'
 
 export default function HomePage() {
   const featured = getFeaturedPosts(5)
@@ -22,7 +22,9 @@ export default function HomePage() {
       <TrustBand />
       <CategoryGrid />
       <LatestTrending latest={latest} trending={trending} />
-      <NewsletterCta />
+      <section className="mx-auto max-w-6xl px-4 py-4 pb-12 sm:px-6 lg:py-8 lg:pb-16">
+        <AdvertisementCard variant="horizontal" />
+      </section>
     </main>
   )
 }

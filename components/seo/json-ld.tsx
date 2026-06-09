@@ -143,6 +143,8 @@ export function ItemListJsonLd({ post }: { post: Post }) {
         '@context': 'https://schema.org',
         '@type': 'ItemList',
         name: post.title,
+        numberOfItems: post.agencies.length,
+        itemListOrder: 'https://schema.org/ItemListOrderAscending',
         itemListElement: post.agencies.map((a) => ({
           '@type': 'ListItem',
           position: a.rank,
@@ -151,6 +153,8 @@ export function ItemListJsonLd({ post }: { post: Post }) {
             name: a.name,
             description: a.tagline,
             address: a.location,
+            url: a.website,
+            foundingDate: a.founded,
           },
         })),
       }}

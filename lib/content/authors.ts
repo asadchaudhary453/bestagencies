@@ -1,35 +1,19 @@
 import type { Author } from './types'
 
-export const authors: Author[] = [
-  {
-    slug: 'eleanor-hughes',
-    name: 'Eleanor Hughes',
-    role: 'Editor-in-Chief',
-    bio: 'Eleanor leads editorial at Best Agencies with over a decade of experience reviewing marketing and technology service providers. She oversees our ranking methodology.',
-    avatar: '/images/author-eleanor.png',
-    twitter: '@eleanorhughes',
-    linkedin: 'https://linkedin.com',
-  },
-  {
-    slug: 'marcus-bell',
-    name: 'Marcus Bell',
-    role: 'Senior Analyst, Marketing',
-    bio: 'Marcus specialises in SEO and performance marketing. He has audited hundreds of agencies and contributes our data-led growth rankings.',
-    avatar: '/images/author-marcus.png',
-    twitter: '@marcusbell',
-    linkedin: 'https://linkedin.com',
-  },
-  {
-    slug: 'priya-nair',
-    name: 'Priya Nair',
-    role: 'Technology Editor',
-    bio: 'Priya covers software development, product engineering and web design. She evaluates technical delivery, code quality and reliability for our reviews.',
-    avatar: '/images/author-priya.png',
-    twitter: '@priyanair',
-    linkedin: 'https://linkedin.com',
-  },
-]
+const admin: Author = {
+  slug: 'admin',
+  name: 'Admin',
+  role: 'Editorial Team',
+  bio: 'The Best Agencies editorial team researches, vets and ranks agencies across every category using our independent methodology.',
+  avatar: '/favicon.png',
+}
 
-export function getAuthor(slug: string): Author | undefined {
-  return authors.find((a) => a.slug === slug)
+export const authors: Author[] = [admin]
+
+/**
+ * All content is published under the site Admin account, so any author
+ * slug referenced by a post resolves to Admin.
+ */
+export function getAuthor(_slug: string): Author | undefined {
+  return admin
 }

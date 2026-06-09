@@ -8,8 +8,11 @@ import {
 import { SITE } from '@/lib/site'
 import { Breadcrumbs } from '@/components/layout/breadcrumbs'
 import { CategoryIcon } from '@/components/brand/category-icon'
+import Link from 'next/link'
+import { Sparkles } from 'lucide-react'
 import { PostsGrid } from '@/components/posts/posts-grid'
-import { NewsletterCta } from '@/components/home/newsletter-cta'
+import { CategoryEditorial } from '@/components/category/category-editorial'
+import { AdvertisementCard } from '@/components/ads/advertisement-card'
 import { breadcrumbJsonLd } from '@/components/layout/breadcrumbs'
 import { JsonLd, collectionPageJsonLd } from '@/components/seo/json-ld'
 
@@ -89,17 +92,40 @@ export default async function CategoryPage({
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
-        <div className="mb-8 flex items-center justify-between">
-          <h2 className="font-heading text-xl font-semibold">
-            {posts.length} {posts.length === 1 ? 'guide' : 'guides'}
-          </h2>
-        </div>
-        <PostsGrid
-          posts={posts}
-          emptyMessage="New rankings for this category are coming soon."
-        />
+        {posts.length > 0 ? (
+          <>
+            <div className="mb-8 flex items-center justify-between">
+              <h2 className="font-heading text-xl font-semibold">
+                {posts.length} {posts.length === 1 ? 'guide' : 'guides'}
+              </h2>
+            </div>
+            <PostsGrid posts={posts} />
+          </>
+        ) : (
+          <div className="mx-auto flex max-w-md flex-col items-center gap-4 rounded-2xl border border-dashed border-border bg-card px-6 py-14 text-center">
+            <span className="flex size-12 items-center justify-center rounded-full bg-accent text-primary">
+              <Sparkles className="h-6 w-6" aria-hidden="true" />
+            </span>
+            <h2 className="font-heading text-xl font-bold">
+              Guides coming soon
+            </h2>
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Our research team is evaluating {category.shortName.toLowerCase()}{' '}
+              providers right now. Check back soon — rankings are on the way.
+            </p>
+            <Link
+              href="/categories"
+              className="mt-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+            >
+              Browse other categories
+            </Link>
+          </div>
+        )}
       </section>
-      <NewsletterCta />
+      <section className="mx-auto max-w-6xl px-4 pb-12 sm:px-6 lg:pb-16">
+        <AdvertisementCard variant="horizontal" />
+      </section>
+      <CategoryEditorial category={category} />
     </main>
   )
 }
