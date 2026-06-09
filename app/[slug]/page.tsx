@@ -31,7 +31,6 @@ import { RelatedPosts } from '@/components/article/related-posts'
 import { HelpfulLinks } from '@/components/article/helpful-links'
 import { WriteForUsWidget } from '@/components/article/write-for-us-widget'
 import { AdvertisementCard } from '@/components/ads/advertisement-card'
-import { CategoryBadge } from '@/components/posts/category-badge'
 
 export function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }))
@@ -127,7 +126,6 @@ export default async function PostPage({
         />
         <div className="relative mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:py-16">
           <Breadcrumbs items={crumbs} className="mb-6" />
-          <CategoryBadge slug={post.category} />
           <h1 className="mt-5 font-heading text-3xl font-bold leading-[1.1] tracking-tight text-balance sm:text-4xl lg:text-5xl">
             {post.title}
           </h1>
@@ -251,10 +249,10 @@ export default async function PostPage({
               </Link>
             )}
             <Link
-              href="/agencies"
+              href="/categories"
               className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
             >
-              Back to all rankings
+              Back to all categories
             </Link>
           </div>
         </article>

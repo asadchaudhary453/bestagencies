@@ -1,50 +1,20 @@
 import type { Metadata } from 'next'
-import { Check, PenLine, Users, TrendingUp } from 'lucide-react'
+import { ArrowRight, Check } from 'lucide-react'
 import { SITE } from '@/lib/site'
 import { PageHeader } from '@/components/layout/page-header'
-import { ContactForm } from '@/components/contact-form'
 
 export const metadata: Metadata = {
   title: 'Write for Us',
   description:
-    'Contribute to Best Agencies. We accept expert guest articles on SEO, web design, digital marketing, PR and software development. Read our guidelines.',
+    'Publish a guest post or get a link insertion on Best Agencies. Reach decision-makers actively choosing agencies in the UK. Place your order now.',
   alternates: { canonical: '/write-for-us' },
 }
 
 const benefits = [
-  {
-    icon: Users,
-    title: 'Reach decision-makers',
-    text: 'Our readers are founders, marketers and operators actively choosing agencies.',
-  },
-  {
-    icon: TrendingUp,
-    title: 'Build authority',
-    text: 'A bylined article with an author bio and a link back to your work.',
-  },
-  {
-    icon: PenLine,
-    title: 'Editorial support',
-    text: 'Our editors help shape your draft into a polished, on-brand piece.',
-  },
-]
-
-const guidelines = [
-  'Original, unpublished content of 1,200+ words',
-  'Genuinely useful and well-researched — no thin or AI-spun copy',
-  'Relevant to agencies, marketing, design or technology',
-  'No overt self-promotion; one relevant author link is fine',
-  'Include credible sources and data where possible',
-  'Written in clear British English',
-]
-
-const topics = [
-  'SEO & organic growth',
-  'Web design & UX',
-  'Digital marketing',
-  'Public relations',
-  'Software development',
-  'Agency operations',
+  'Reach founders, marketers and operators actively choosing agencies',
+  'Earn quality backlinks from a relevant, editorial site',
+  'Promote your company alongside the UK\u2019s best agencies',
+  'Simple ordering process with fast turnaround',
 ]
 
 export default function WriteForUsPage() {
@@ -53,82 +23,52 @@ export default function WriteForUsPage() {
       <PageHeader
         eyebrow="Contribute"
         title="Write for us"
-        description={`Share your expertise with the ${SITE.name} audience. We're always looking for original, insightful articles from practitioners who know their craft.`}
+        description={`Publish a guest post or get a link insertion on ${SITE.name} and put your brand in front of decision-makers.`}
         crumbs={[{ label: 'Home', href: '/' }, { label: 'Write for Us' }]}
       />
 
-      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
-        <div className="grid gap-6 sm:grid-cols-3">
-          {benefits.map((b, i) => (
-            <div
-              key={b.title}
-              data-reveal
-              data-reveal-delay={(i % 3) + 1}
-              className="card-lift rounded-2xl border border-border bg-card p-6"
-            >
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent text-primary">
-                <b.icon className="h-5 w-5" aria-hidden="true" />
-              </span>
-              <h3 className="mt-4 font-heading text-lg font-semibold">
-                {b.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {b.text}
-              </p>
-            </div>
-          ))}
+      <section className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:py-20">
+        <div data-reveal className="flex flex-col gap-6">
+          <p className="text-lg leading-relaxed text-muted-foreground">
+            We accept guest posts and link insertions from businesses and
+            writers who want to share genuinely useful content with our
+            readers. It&apos;s a simple, effective way to earn backlinks, build
+            authority and promote your company to an audience that&apos;s
+            actively comparing agencies.
+          </p>
+          <ul className="flex flex-col gap-3">
+            {benefits.map((b) => (
+              <li key={b} className="flex items-start gap-3">
+                <Check
+                  className="mt-0.5 h-5 w-5 shrink-0 text-primary"
+                  aria-hidden="true"
+                />
+                <span className="leading-relaxed text-foreground/90">{b}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-2">
-          <div data-reveal="left">
-            <h2 className="font-heading text-2xl font-bold">
-              Submission guidelines
-            </h2>
-            <ul className="mt-5 flex flex-col gap-3">
-              {guidelines.map((g) => (
-                <li key={g} className="flex items-start gap-3">
-                  <Check
-                    className="mt-0.5 h-5 w-5 shrink-0 text-primary"
-                    aria-hidden="true"
-                  />
-                  <span className="leading-relaxed text-foreground/90">{g}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div data-reveal="right" data-reveal-delay="1">
-            <h2 className="font-heading text-2xl font-bold">Topics we cover</h2>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {topics.map((t) => (
-                <span
-                  key={t}
-                  className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-            <p className="mt-6 leading-relaxed text-muted-foreground">
-              Have a pitch that doesn&apos;t fit neatly into these? We still want
-              to hear it. The best articles teach our readers something they
-              can&apos;t easily find elsewhere.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-border bg-secondary/40">
-        <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:py-16">
-          <div data-reveal className="mb-8 text-center">
-            <h2 className="font-heading text-2xl font-bold lg:text-3xl">
-              Pitch your idea
-            </h2>
-            <p className="mt-3 leading-relaxed text-muted-foreground">
-              Send us your topic and a short outline. We review every pitch and
-              reply within a week.
-            </p>
-          </div>
-          <ContactForm />
+        <div
+          data-reveal
+          className="mt-12 flex flex-col items-center gap-5 rounded-2xl border border-border bg-card p-8 text-center sm:p-10"
+        >
+          <h2 className="font-heading text-2xl font-bold text-balance sm:text-3xl">
+            Ready to get published?
+          </h2>
+          <p className="max-w-md leading-relaxed text-muted-foreground">
+            Place your order through our guest post and link insertion service
+            and we&apos;ll take care of the rest.
+          </p>
+          <a
+            href="https://aamax.co/service/guest-posts-and-link-insertions#place-order"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30"
+          >
+            Place Your Order Now
+            <ArrowRight className="h-5 w-5" aria-hidden="true" />
+          </a>
         </div>
       </section>
     </main>

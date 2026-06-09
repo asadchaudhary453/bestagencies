@@ -53,13 +53,21 @@ const sections = [
     ],
   },
   {
-    heading: '8. Changes to these terms',
+    heading: '8. Prohibited activities',
     body: [
-      'We may update these Terms & Conditions from time to time. Continued use of the Site after changes are posted constitutes acceptance of the revised terms.',
+      'We do not work with companies involved in illegal activities or those associated with businesses such as essay writing, CBD, casinos, gambling, betting, dating, drugs, movies, songs, dances, insurance, mortgages, banking loans, or any other illegal activities. We reserve the right to cancel the order or terminate any agreement with any client who is found to be involved in such activities.',
+      'If you are unsure if your site violates our restrictions, please contact us first.',
     ],
   },
   {
-    heading: '9. Contact',
+    heading: '9. Changes to terms and conditions',
+    body: [
+      'We reserve the right to make changes to these terms and conditions at any time. Any changes will be posted on our website and will be effective immediately upon posting.',
+      'By using our services, you agree to these terms and conditions. If you have any questions or concerns, please contact us.',
+    ],
+  },
+  {
+    heading: '10. Contact',
     body: [
       `If you have any questions about these terms, please contact us at ${SITE.email}.`,
     ],

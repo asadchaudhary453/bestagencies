@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Clock, ShieldCheck } from 'lucide-react'
 import type { Post } from '@/lib/content'
-import { formatDate, getAuthor, getCategory } from '@/lib/content'
+import { getAuthor, getCategory } from '@/lib/content'
 import { PostRow } from '@/components/posts/post-row'
 
 export function Hero({
@@ -18,16 +18,6 @@ export function Hero({
   return (
     <section className="border-b border-border bg-background">
       <div className="mx-auto max-w-7xl px-4 py-8 lg:py-12">
-        {/* Masthead line */}
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-2 border-b border-border pb-4 animate-fade-in">
-          <p className="eyebrow">
-            Independent agency rankings, refreshed quarterly
-          </p>
-          <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-            {formatDate(lead.publishedAt)}
-          </p>
-        </div>
-
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
           {/* Immersive feature */}
           <article className="group relative lg:col-span-8 animate-fade-up">
@@ -85,9 +75,9 @@ export function Hero({
           {/* Latest rankings rail */}
           <aside className="flex flex-col lg:col-span-4 animate-fade-up delay-100">
             <div className="mb-5 flex items-center justify-between border-b border-border pb-3">
-              <h2 className="font-heading text-lg font-bold">Latest rankings</h2>
+              <h2 className="font-heading text-lg font-bold">Latest Posts</h2>
               <Link
-                href="/agencies"
+                href="/categories"
                 className="link-underline text-xs font-semibold uppercase tracking-[0.12em] text-primary"
               >
                 All

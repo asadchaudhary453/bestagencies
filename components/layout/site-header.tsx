@@ -161,10 +161,10 @@ export function SiteHeader() {
                       ))}
                     </div>
                     <Link
-                      href="/agencies"
+                      href="/categories"
                       className="group/all flex items-center justify-between gap-2 border-t border-border/70 bg-secondary/60 px-5 py-3.5 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
                     >
-                      Browse all categories &amp; rankings
+                      Browse all categories
                       <ArrowRight className="h-4 w-4 transition-transform group-hover/all:translate-x-1" />
                     </Link>
                   </div>
@@ -319,10 +319,10 @@ export function SiteHeader() {
               </div>
 
               <Link
-                href="/agencies"
+                href="/categories"
                 className="mt-6 flex items-center justify-center gap-1.5 rounded-full bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25"
               >
-                View All Rankings
+                View All Categories
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>

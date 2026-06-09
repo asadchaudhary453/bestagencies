@@ -24,7 +24,7 @@ export function LatestTrending({
               <h2 className="section-title">Latest guides</h2>
             </div>
             <Link
-              href="/agencies"
+              href="/categories"
               className="group inline-flex items-center gap-1.5 text-sm font-semibold text-primary"
             >
               View all

@@ -29,11 +29,11 @@ export default function NotFound() {
             Back home
           </Link>
           <Link
-            href="/agencies"
+            href="/categories"
             className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-semibold transition-colors hover:border-primary hover:text-primary"
           >
             <Search className="h-4 w-4" aria-hidden="true" />
-            Browse rankings
+            Browse categories
           </Link>
         </div>
       </div>

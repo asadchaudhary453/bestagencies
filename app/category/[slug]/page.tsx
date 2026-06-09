@@ -11,7 +11,6 @@ import { CategoryIcon } from '@/components/brand/category-icon'
 import Link from 'next/link'
 import { Sparkles } from 'lucide-react'
 import { PostsGrid } from '@/components/posts/posts-grid'
-import { CategoryEditorial } from '@/components/category/category-editorial'
 import { AdvertisementCard } from '@/components/ads/advertisement-card'
 import { breadcrumbJsonLd } from '@/components/layout/breadcrumbs'
 import { JsonLd, collectionPageJsonLd } from '@/components/seo/json-ld'
@@ -53,7 +52,7 @@ export default async function CategoryPage({
   const posts = getPostsByCategory(slug)
   const crumbs = [
     { label: 'Home', href: '/' },
-    { label: 'Categories', href: '/agencies' },
+    { label: 'Categories', href: '/categories' },
     { label: category.shortName },
   ]
 
@@ -125,7 +124,6 @@ export default async function CategoryPage({
       <section className="mx-auto max-w-6xl px-4 pb-12 sm:px-6 lg:pb-16">
         <AdvertisementCard variant="horizontal" />
       </section>
-      <CategoryEditorial category={category} />
     </main>
   )
 }

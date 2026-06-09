@@ -4,7 +4,6 @@ import {
   getTrendingPosts,
 } from '@/lib/content'
 import { Hero } from '@/components/home/hero'
-import { TrustBand } from '@/components/home/trust-band'
 import { CategoryGrid } from '@/components/home/category-grid'
 import { LatestTrending } from '@/components/home/latest-trending'
 import { AdvertisementCard } from '@/components/ads/advertisement-card'
@@ -19,7 +18,6 @@ export default function HomePage() {
   return (
     <main>
       <Hero lead={lead} secondary={secondary.slice(0, 4)} />
-      <TrustBand />
       <CategoryGrid />
       <LatestTrending latest={latest} trending={trending} />
       <section className="mx-auto max-w-6xl px-4 py-4 pb-12 sm:px-6 lg:py-8 lg:pb-16">

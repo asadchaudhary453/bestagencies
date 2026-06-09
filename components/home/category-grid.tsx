@@ -21,7 +21,7 @@ export function CategoryGrid() {
             </p>
           </div>
           <Link
-            href="/agencies"
+            href="/categories"
             className="link-underline shrink-0 text-sm font-semibold text-primary"
           >
             View all categories

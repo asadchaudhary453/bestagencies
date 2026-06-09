@@ -24,8 +24,10 @@ export function OrganizationJsonLd() {
         logo: `${SITE.url}/best-agencies-logo.png`,
         description: SITE.description,
         sameAs: [
-          'https://twitter.com/bestagencies',
-          'https://www.linkedin.com/company/bestagencies',
+          'https://web.facebook.com/bestagencies.co.uk/',
+          'https://twitter.com/bestagenciesuk',
+          'https://www.instagram.com/bestagencies.co.uk/',
+          'https://www.linkedin.com/in/bestagenciesuk/',
         ],
       }}
     />
