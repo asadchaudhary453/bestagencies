@@ -505,7 +505,7 @@ export function MarkdownEditor({
               variant={mode === "html" ? "default" : "ghost"}
               size="sm"
               onClick={() => handleModeToggle("html")}
-              className={`h-7 px-2 text-xs ${mode === "html" ? "bg-gradient-to-r from-primary to-primary text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground hover:bg-primary/15"}`}
+              className={`h-7 px-2 text-xs ${mode === "html" ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground hover:bg-primary/15"}`}
               disabled={isConverting}
             >
               <Code className="h-3 w-3 mr-1" />
@@ -516,7 +516,7 @@ export function MarkdownEditor({
               variant={mode === "markdown" ? "default" : "ghost"}
               size="sm"
               onClick={() => handleModeToggle("markdown")}
-              className={`h-7 px-2 text-xs ${mode === "markdown" ? "bg-gradient-to-r from-primary to-primary text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground hover:bg-primary/15"}`}
+              className={`h-7 px-2 text-xs ${mode === "markdown" ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground hover:bg-primary/15"}`}
               disabled={isConverting}
             >
               <FileText className="h-3 w-3 mr-1" />
@@ -529,13 +529,13 @@ export function MarkdownEditor({
       {mode === "html" ? (
         <Tabs defaultValue="write" className="w-full">
           <TabsList className="grid w-full grid-cols-2 bg-card border border-border">
-            <TabsTrigger value="write" className="flex items-center space-x-1 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-primary data-[state=active]:text-foreground text-muted-foreground">
+            <TabsTrigger value="write" className="flex items-center space-x-1 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-muted-foreground">
               <Edit className="h-3 w-3" />
               <span>Write HTML</span>
             </TabsTrigger>
             <TabsTrigger
               value="preview"
-              className="flex items-center space-x-1 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-primary data-[state=active]:text-foreground text-muted-foreground"
+              className="flex items-center space-x-1 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-muted-foreground"
             >
               <Eye className="h-3 w-3" />
               <span>Preview</span>
@@ -550,7 +550,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatBold}
-                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                   title="Bold"
                 >
                   <Bold className="h-4 w-4" />
@@ -560,7 +560,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatItalic}
-                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                   title="Italic"
                 >
                   <Italic className="h-4 w-4" />
@@ -570,7 +570,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatCode}
-                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                   title="Inline Code"
                 >
                   <Code className="h-4 w-4" />
@@ -583,7 +583,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatH1}
-                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                   title="Heading 1"
                 >
                   <Heading1 className="h-4 w-4" />
@@ -593,7 +593,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatH2}
-                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                   title="Heading 2"
                 >
                   <Heading2 className="h-4 w-4" />
@@ -603,7 +603,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatH3}
-                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                   title="Heading 3"
                 >
                   <Heading3 className="h-4 w-4" />
@@ -616,7 +616,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatBulletList}
-                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                   title="Bullet List"
                 >
                   <List className="h-4 w-4" />
@@ -626,7 +626,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatNumberedList}
-                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                   title="Numbered List"
                 >
                   <ListOrdered className="h-4 w-4" />
@@ -636,7 +636,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatQuote}
-                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                   title="Quote"
                 >
                   <Quote className="h-4 w-4" />
@@ -651,7 +651,7 @@ export function MarkdownEditor({
                       variant="ghost"
                       size="sm"
                       onClick={openLinkDialog}
-                      className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                      className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                       title="Insert Link"
                     >
                       <LinkIcon className="h-4 w-4" />
@@ -690,7 +690,7 @@ export function MarkdownEditor({
                       </div>
                       <Button
                         onClick={insertLink}
-                        className="w-full bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-foreground"
+                        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
                       >
                         Insert Link
                       </Button>
@@ -704,7 +704,7 @@ export function MarkdownEditor({
                       type="button"
                       variant="ghost"
                       size="sm"
-                      className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                      className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                       title="Insert Image"
                     >
                       <ImageIcon className="h-4 w-4" />
@@ -763,7 +763,7 @@ export function MarkdownEditor({
                       </div>
                       <Button
                         onClick={insertImage}
-                        className="w-full bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-foreground"
+                        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
                         disabled={isUploading}
                       >
                         Insert Image
@@ -812,13 +812,13 @@ export function MarkdownEditor({
       ) : (
         <Tabs defaultValue="write" className="w-full">
           <TabsList className="grid w-full grid-cols-2 bg-card border border-border">
-            <TabsTrigger value="write" className="flex items-center space-x-1 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-primary data-[state=active]:text-foreground text-muted-foreground">
+            <TabsTrigger value="write" className="flex items-center space-x-1 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-muted-foreground">
               <Edit className="h-3 w-3" />
               <span>Write</span>
             </TabsTrigger>
             <TabsTrigger
               value="preview"
-              className="flex items-center space-x-1 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-primary data-[state=active]:text-foreground text-muted-foreground"
+              className="flex items-center space-x-1 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-muted-foreground"
             >
               <Eye className="h-3 w-3" />
               <span>Preview</span>
@@ -833,7 +833,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatBold}
-                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                   title="Bold (Ctrl+B)"
                 >
                   <Bold className="h-4 w-4" />
@@ -843,7 +843,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatItalic}
-                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                   title="Italic (Ctrl+I)"
                 >
                   <Italic className="h-4 w-4" />
@@ -853,7 +853,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatCode}
-                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                   title="Inline Code"
                 >
                   <Code className="h-4 w-4" />
@@ -866,7 +866,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatH1}
-                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                   title="Heading 1"
                 >
                   <Heading1 className="h-4 w-4" />
@@ -876,7 +876,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatH2}
-                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                   title="Heading 2"
                 >
                   <Heading2 className="h-4 w-4" />
@@ -886,7 +886,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatH3}
-                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                   title="Heading 3"
                 >
                   <Heading3 className="h-4 w-4" />
@@ -899,7 +899,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatBulletList}
-                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                   title="Bullet List"
                 >
                   <List className="h-4 w-4" />
@@ -909,7 +909,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatNumberedList}
-                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                   title="Numbered List"
                 >
                   <ListOrdered className="h-4 w-4" />
@@ -919,7 +919,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatQuote}
-                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                   title="Quote"
                 >
                   <Quote className="h-4 w-4" />
@@ -934,7 +934,7 @@ export function MarkdownEditor({
                       variant="ghost"
                       size="sm"
                       onClick={openLinkDialog}
-                      className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                      className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                       title="Insert Link"
                     >
                       <LinkIcon className="h-4 w-4" />
@@ -975,7 +975,7 @@ export function MarkdownEditor({
                       </div>
                       <Button
                         onClick={insertLink}
-                        className="w-full bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-foreground"
+                        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
                       >
                         Insert Link
                       </Button>
@@ -992,7 +992,7 @@ export function MarkdownEditor({
                       type="button"
                       variant="ghost"
                       size="sm"
-                      className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
+                      className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                       title="Insert Image"
                     >
                       <ImageIcon className="h-4 w-4" />
@@ -1051,7 +1051,7 @@ export function MarkdownEditor({
                       </div>
                       <Button
                         onClick={insertImage}
-                        className="w-full bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-foreground"
+                        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
                         disabled={isUploading}
                       >
                         Insert Image

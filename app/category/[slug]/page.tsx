@@ -1,10 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import {
-  categories,
-  getCategory,
-  getPostsByCategory,
-} from '@/lib/content'
+import { categories, getCategory } from '@/lib/content'
+import { getPostsByCategory } from '@/lib/content/data'
 import { SITE } from '@/lib/site'
 import { Breadcrumbs } from '@/components/layout/breadcrumbs'
 import { CategoryIcon } from '@/components/brand/category-icon'
@@ -14,6 +11,9 @@ import { PostsGrid } from '@/components/posts/posts-grid'
 import { AdvertisementCard } from '@/components/ads/advertisement-card'
 import { breadcrumbJsonLd } from '@/components/layout/breadcrumbs'
 import { JsonLd, collectionPageJsonLd } from '@/components/seo/json-ld'
+
+export const revalidate = 300
+export const dynamicParams = true
 
 export function generateStaticParams() {
   return categories.map((c) => ({ slug: c.slug }))
@@ -49,7 +49,7 @@ export default async function CategoryPage({
   const category = getCategory(slug)
   if (!category) notFound()
 
-  const posts = getPostsByCategory(slug)
+  const posts = await getPostsByCategory(slug)
   const crumbs = [
     { label: 'Home', href: '/' },
     { label: 'Categories', href: '/categories' },

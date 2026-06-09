@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Clock, ShieldCheck } from 'lucide-react'
-import type { Post } from '@/lib/content'
+import type { PostSummary } from "@/lib/content/types"
 import { getAuthor, getCategory } from '@/lib/content'
 import { PostRow } from '@/components/posts/post-row'
 
@@ -9,8 +9,8 @@ export function Hero({
   lead,
   secondary,
 }: {
-  lead: Post
-  secondary: Post[]
+  lead: PostSummary
+  secondary: PostSummary[]
 }) {
   const author = getAuthor(lead.author)
   const category = getCategory(lead.category)

@@ -104,6 +104,15 @@ export function ArticleBody({
                 )}
               </blockquote>
             )
+          case 'html':
+            return (
+              <div
+                key={i}
+                className="prose-article"
+                // Sanitized server-side with DOMPurify in lib/content/data.ts
+                dangerouslySetInnerHTML={{ __html: block.html }}
+              />
+            )
           case 'agencies':
             return (
               <div key={i} className="flex flex-col gap-5">

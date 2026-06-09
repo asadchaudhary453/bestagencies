@@ -3,6 +3,9 @@ import { Suspense } from 'react'
 import { PageHeader } from '@/components/layout/page-header'
 import { SearchResults } from '@/components/search/search-results'
 import { Skeleton, PostsGridSkeleton } from '@/components/skeletons'
+import { getAllPosts } from '@/lib/content/data'
+
+export const revalidate = 300
 
 export const metadata: Metadata = {
   title: 'Search',
@@ -11,7 +14,8 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 }
 
-export default function SearchPage() {
+export default async function SearchPage() {
+  const posts = await getAllPosts()
   return (
     <main>
       <PageHeader
@@ -29,7 +33,7 @@ export default function SearchPage() {
             </div>
           }
         >
-          <SearchResults />
+          <SearchResults posts={posts} />
         </Suspense>
       </section>
     </main>

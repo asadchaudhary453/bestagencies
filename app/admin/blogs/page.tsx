@@ -39,6 +39,7 @@ import {
 import { useToast } from "@/hooks/use-toast"
 import { MarkdownEditor } from "@/components/admin/markdown-editor"
 import { marked } from "marked"
+import { categories as siteCategories } from "@/lib/content/categories"
 
 // Configure marked options
 marked.setOptions({
@@ -465,7 +466,7 @@ export default function BlogPage() {
           </div>
           <Button
             onClick={() => setShowCreateModal(true)}
-            className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-foreground shadow-lg shadow-primary/30 transition-all duration-300"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/30 transition-all duration-300"
           >
             <Plus className="h-4 w-4 mr-2" />
             New Post
@@ -786,7 +787,7 @@ export default function BlogPage() {
                 {!debouncedSearchTerm && statusFilter === "all" && categoryFilter === "all" && (
                   <Button
                     onClick={() => setShowCreateModal(true)}
-                    className="mt-4 bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-foreground"
+                    className="mt-4 bg-primary hover:bg-primary/90 text-primary-foreground"
                   >
                     <Plus className="h-4 w-4 mr-2" />
                     Create Post
@@ -954,7 +955,7 @@ export default function BlogPage() {
                         setSelectedPost(null)
                         handleEditPost(selectedPost)
                       }}
-                      className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-foreground shadow-lg shadow-primary/30"
+                      className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/30"
                     >
                       <Edit className="h-4 w-4 mr-2" />
                       Edit Post
@@ -1034,13 +1035,15 @@ export default function BlogPage() {
                         <SelectValue placeholder="Select category" />
                       </SelectTrigger>
                       <SelectContent className="bg-card border-border">
-                        <SelectItem value="SEO" className="text-muted-foreground focus:bg-muted focus:text-foreground">SEO</SelectItem>
-                        <SelectItem value="Marketing" className="text-muted-foreground focus:bg-muted focus:text-foreground">Marketing</SelectItem>
-                        <SelectItem value="Web Development" className="text-muted-foreground focus:bg-muted focus:text-foreground">Web Development</SelectItem>
-                        <SelectItem value="Business" className="text-muted-foreground focus:bg-muted focus:text-foreground">Business</SelectItem>
-                        <SelectItem value="Content Writing" className="text-muted-foreground focus:bg-muted focus:text-foreground">Content Writing</SelectItem>
-                        <SelectItem value="Graphic Design" className="text-muted-foreground focus:bg-muted focus:text-foreground">Graphic Design</SelectItem>
-                        <SelectItem value="Others" className="text-muted-foreground focus:bg-muted focus:text-foreground">Others</SelectItem>
+                        {siteCategories.map((c) => (
+                          <SelectItem
+                            key={c.slug}
+                            value={c.name}
+                            className="text-muted-foreground focus:bg-muted focus:text-foreground"
+                          >
+                            {c.name}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                   </div>
@@ -1163,7 +1166,7 @@ export default function BlogPage() {
                 </Button>
                 <Button
                   type="submit"
-                  className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-foreground shadow-lg shadow-primary/30"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/30"
                 >
                   <Save className="h-4 w-4 mr-2" />
                   {editingPost ? "Update Post" : "Create Post"}

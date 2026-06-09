@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import { categories, getCategoryCounts } from '@/lib/content'
+import { categories } from '@/lib/content'
+import { getCategoryCounts } from '@/lib/content/data'
 import { SITE } from '@/lib/site'
 import { PageHeader } from '@/components/layout/page-header'
 import { CategoryIcon } from '@/components/brand/category-icon'
@@ -20,8 +21,10 @@ export const metadata: Metadata = {
   },
 }
 
-export default function CategoriesPage() {
-  const counts = getCategoryCounts()
+export const revalidate = 300
+
+export default async function CategoriesPage() {
+  const counts = await getCategoryCounts()
 
   return (
     <main>

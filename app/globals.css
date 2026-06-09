@@ -354,3 +354,27 @@
 .prose-article strong {
   @apply font-semibold text-foreground;
 }
+.prose-article img {
+  @apply my-6 h-auto w-full rounded-xl border border-border;
+}
+.prose-article table {
+  @apply my-6 w-full border-collapse text-sm;
+}
+.prose-article th {
+  @apply border border-border bg-accent/60 px-4 py-2.5 text-left font-semibold text-foreground;
+}
+.prose-article td {
+  @apply border border-border px-4 py-2.5 align-top;
+}
+.prose-article pre {
+  @apply my-6 overflow-x-auto rounded-xl bg-ink p-4 text-sm text-ink-foreground;
+}
+.prose-article code {
+  @apply rounded bg-accent/70 px-1.5 py-0.5 font-mono text-[0.9em];
+}
+.prose-article pre code {
+  @apply bg-transparent p-0;
+}
+.prose-article hr {
+  @apply my-8 border-border;
+}

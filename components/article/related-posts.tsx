@@ -1,7 +1,7 @@
-import type { Post } from '@/lib/content'
+import type { PostSummary } from "@/lib/content/types"
 import { PostCard } from '@/components/posts/post-card'
 
-export function RelatedPosts({ posts }: { posts: Post[] }) {
+export function RelatedPosts({ posts }: { posts: PostSummary[] }) {
   if (!posts.length) return null
   return (
     <section className="border-t border-border bg-paper">

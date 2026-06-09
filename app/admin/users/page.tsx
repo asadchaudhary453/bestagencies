@@ -300,7 +300,7 @@ export default function AdminUsersPage() {
               style={{ fontFamily: "var(--font-display)" }}
             >
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary flex items-center justify-center">
-                <Users className="w-5 h-5 text-foreground" />
+                <Users className="w-5 h-5 text-primary-foreground" />
               </div>
               User Management
             </h1>
@@ -313,7 +313,7 @@ export default function AdminUsersPage() {
               resetForm();
               setShowAddModal(true);
             }}
-            className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-foreground shadow-lg shadow-primary/25 transition-all duration-300 hover:shadow-primary/40"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 hover:shadow-primary/40"
           >
             <UserPlus className="w-4 h-4 mr-2" />
             Add New User
@@ -447,7 +447,7 @@ export default function AdminUsersPage() {
                     <Avatar className="h-12 w-12 border-2 border-border group-hover:border-primary/50 transition-colors">
                       <AvatarFallback
                         className={cn(
-                          "text-foreground font-semibold",
+                          "text-primary-foreground font-semibold",
                           user.role === "admin"
                             ? "bg-gradient-to-br from-primary to-primary"
                             : "bg-gradient-to-br from-primary to-primary"
@@ -458,7 +458,7 @@ export default function AdminUsersPage() {
                     </Avatar>
                     {user.role === "admin" && (
                       <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-primary flex items-center justify-center border-2 border-primary-foreground">
-                        <Crown className="w-2.5 h-2.5 text-foreground" />
+                        <Crown className="w-2.5 h-2.5 text-primary-foreground" />
                       </div>
                     )}
                   </div>
@@ -714,7 +714,7 @@ export default function AdminUsersPage() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex-1 bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-foreground"
+                className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground"
               >
                 {isSubmitting ? (
                   <div className="w-4 h-4 border-2 border-border border-t-white rounded-full animate-spin" />
@@ -885,7 +885,7 @@ export default function AdminUsersPage() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex-1 bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-foreground"
+                className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground"
               >
                 {isSubmitting ? (
                   <div className="w-4 h-4 border-2 border-border border-t-white rounded-full animate-spin" />

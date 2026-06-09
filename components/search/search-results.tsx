@@ -3,11 +3,12 @@
 import { useMemo, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Search } from 'lucide-react'
-import { searchPosts, categories, getCategoryCounts } from '@/lib/content'
+import { searchPosts, categories, getCategory } from '@/lib/content'
+import type { PostSummary } from '@/lib/content/types'
 import { PostsGrid } from '@/components/posts/posts-grid'
 import { cn } from '@/lib/utils'
 
-export function SearchResults() {
+export function SearchResults({ posts }: { posts: PostSummary[] }) {
   const params = useSearchParams()
   const router = useRouter()
   const initial = params.get('q') ?? ''
@@ -15,15 +16,20 @@ export function SearchResults() {
   const [categoryFilter, setCategoryFilter] = useState<string>('')
 
   const results = useMemo(
-    () => searchPosts(query, categoryFilter || undefined),
-    [query, categoryFilter],
+    () => searchPosts(posts, query, categoryFilter || undefined),
+    [posts, query, categoryFilter],
   )
 
   // Only offer categories that actually have content.
   const filterableCategories = useMemo(() => {
-    const counts = getCategoryCounts()
-    return categories.filter((c) => counts[c.slug] > 0)
-  }, [])
+    const present = new Set(posts.map((p) => p.category))
+    const known = categories.filter((c) => present.has(c.slug))
+    const extra = [...present]
+      .filter((slug) => !categories.some((c) => c.slug === slug))
+      .map((slug) => getCategory(slug))
+      .filter((c): c is NonNullable<typeof c> => Boolean(c))
+    return [...known, ...extra]
+  }, [posts])
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault()

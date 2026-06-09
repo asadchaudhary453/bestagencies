@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import type { Post } from '@/lib/content'
+import type { PostSummary } from "@/lib/content/types"
 import { formatDate } from '@/lib/content'
 import { CategoryBadge } from './category-badge'
 
-export function PostRow({ post, index }: { post: Post; index?: number }) {
+export function PostRow({ post, index }: { post: PostSummary; index?: number }) {
   return (
     <article className="group flex items-start gap-4">
       {typeof index === 'number' && (

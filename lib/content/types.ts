@@ -39,6 +39,13 @@ export type ContentBlock =
   | { type: 'ordered'; items: string[] }
   | { type: 'quote'; text: string; cite?: string }
   | { type: 'agencies'; intro?: string }
+  | { type: 'html'; html: string }
+
+export type PostHeading = {
+  id: string
+  text: string
+  level: 1 | 2
+}
 
 export type Post = {
   slug: string
@@ -56,4 +63,11 @@ export type Post = {
   trending?: boolean
   agencies: RankedAgency[]
   body: ContentBlock[]
+  headings?: PostHeading[]
 }
+
+/**
+ * Lightweight post shape passed to client components (search) —
+ * excludes the heavy body/agencies fields.
+ */
+export type PostSummary = Omit<Post, 'body' | 'agencies' | 'headings'>

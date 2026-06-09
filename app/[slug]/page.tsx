@@ -3,15 +3,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Clock, Calendar, ArrowLeft, RefreshCw } from 'lucide-react'
+import { getAuthor, getCategory, formatDate } from '@/lib/content'
 import {
   getAllPosts,
   getPost,
-  getAuthor,
-  getCategory,
   getRelatedPosts,
   getOlderBlogPosts,
-  formatDate,
-} from '@/lib/content'
+  incrementViewCount,
+} from '@/lib/content/data'
 import { SITE } from '@/lib/site'
 import {
   ArticleJsonLd,
@@ -32,8 +31,12 @@ import { HelpfulLinks } from '@/components/article/helpful-links'
 import { WriteForUsWidget } from '@/components/article/write-for-us-widget'
 import { AdvertisementCard } from '@/components/ads/advertisement-card'
 
-export function generateStaticParams() {
-  return getAllPosts().map((p) => ({ slug: p.slug }))
+export const revalidate = 300
+export const dynamicParams = true
+
+export async function generateStaticParams() {
+  const posts = await getAllPosts()
+  return posts.map((p) => ({ slug: p.slug }))
 }
 
 export async function generateMetadata({
@@ -42,7 +45,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const { slug } = await params
-  const post = getPost(slug)
+  const post = await getPost(slug)
   if (!post) return {}
   const author = getAuthor(post.author)
   return {
@@ -76,15 +79,19 @@ export default async function PostPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const post = getPost(slug)
+  const post = await getPost(slug)
   if (!post) notFound()
+
+  incrementViewCount(post.slug)
 
   const author = getAuthor(post.author)
   const category = getCategory(post.category)
-  const related = getRelatedPosts(post, 3)
-  const olderPosts = getOlderBlogPosts(post.publishedAt, post.slug, 5)
+  const [related, olderPosts] = await Promise.all([
+    getRelatedPosts(post, 3),
+    getOlderBlogPosts(post.publishedAt, post.slug, 5),
+  ])
 
-  const toc: TocItem[] = post.body
+  const blockToc: TocItem[] = post.body
     .filter(
       (b): b is Extract<typeof b, { type: 'heading' | 'subheading' }> =>
         b.type === 'heading' || b.type === 'subheading',
@@ -94,6 +101,13 @@ export default async function PostPage({
       text: b.text,
       level: b.type === 'heading' ? 1 : 2,
     }))
+  const toc: TocItem[] = blockToc.length
+    ? blockToc
+    : (post.headings ?? []).map((h) => ({
+        id: h.id,
+        text: h.text,
+        level: h.level,
+      }))
 
   const crumbs = [
     { label: 'Home', href: '/' },

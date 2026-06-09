@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Clock } from 'lucide-react'
-import type { Post } from '@/lib/content'
+import type { PostSummary } from "@/lib/content/types"
 import { formatDate, getAuthor } from '@/lib/content'
 import { CategoryBadge } from './category-badge'
 
@@ -10,7 +10,7 @@ export function PostCard({
   priority = false,
   index = 0,
 }: {
-  post: Post
+  post: PostSummary
   priority?: boolean
   index?: number
 }) {

@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { categories } from '@/lib/content'
 import {
-  categories,
   getAllPosts,
   getPostsByCategory,
   getCategoryCounts,
-} from '@/lib/content'
+} from '@/lib/content/data'
 import { SITE } from '@/lib/site'
 import { PageHeader } from '@/components/layout/page-header'
 import { PostsGrid } from '@/components/posts/posts-grid'
@@ -32,11 +32,14 @@ export default async function AgenciesPage({
   searchParams: Promise<{ category?: string }>
 }) {
   const { category } = await searchParams
-  const counts = getCategoryCounts()
+  const [counts, allPosts] = await Promise.all([
+    getCategoryCounts(),
+    getAllPosts(),
+  ])
   const activeCategory = categories.find((c) => c.slug === category)
   const posts = activeCategory
-    ? getPostsByCategory(activeCategory.slug)
-    : getAllPosts()
+    ? await getPostsByCategory(activeCategory.slug)
+    : allPosts
 
   return (
     <main>
@@ -55,7 +58,7 @@ export default async function AgenciesPage({
               !activeCategory && 'border-primary bg-primary text-primary-foreground hover:text-primary-foreground',
             )}
           >
-            All ({getAllPosts().length})
+            All ({allPosts.length})
           </Link>
           {categories.map((c) => (
             <Link

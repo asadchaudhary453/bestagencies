@@ -1,10 +1,11 @@
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { CategoryIcon } from '@/components/brand/category-icon'
-import { categories, getCategoryCounts } from '@/lib/content'
+import { categories } from '@/lib/content'
+import { getCategoryCounts } from '@/lib/content/data'
 
-export function CategoryGrid() {
-  const counts = getCategoryCounts()
+export async function CategoryGrid() {
+  const counts = await getCategoryCounts()
   return (
     <section className="border-b border-border bg-paper">
       <div className="mx-auto max-w-7xl px-4 py-14 lg:py-20">

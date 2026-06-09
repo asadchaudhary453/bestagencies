@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight, Flame } from 'lucide-react'
-import type { Post } from '@/lib/content'
+import type { PostSummary } from "@/lib/content/types"
 import { PostCard } from '@/components/posts/post-card'
 import { PostRow } from '@/components/posts/post-row'
 
@@ -8,8 +8,8 @@ export function LatestTrending({
   latest,
   trending,
 }: {
-  latest: Post[]
-  trending: Post[]
+  latest: PostSummary[]
+  trending: PostSummary[]
 }) {
   return (
     <section className="bg-background">

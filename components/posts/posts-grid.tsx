@@ -1,11 +1,11 @@
-import type { Post } from '@/lib/content'
+import type { PostSummary } from "@/lib/content/types"
 import { PostCard } from './post-card'
 
 export function PostsGrid({
   posts,
   emptyMessage = 'No articles found.',
 }: {
-  posts: Post[]
+  posts: PostSummary[]
   emptyMessage?: string
 }) {
   if (!posts.length) {

@@ -1,7 +1,12 @@
 import { SITE } from '@/lib/site'
-import type { Post } from '@/lib/content/types'
+import type { Post, PostSummary } from '@/lib/content/types'
 import { getAuthor } from '@/lib/content/authors'
-import { getCategory } from '@/lib/content/categories'
+import { getCategory } from '@/lib/content'
+
+/** DB images are absolute (Cloudinary); static ones are site-relative. */
+function absoluteImage(image: string): string {
+  return /^https?:\/\//.test(image) ? image : `${SITE.url}${image}`
+}
 
 export function JsonLd({ data }: { data: Record<string, unknown> }) {
   return (
@@ -66,7 +71,7 @@ export function ArticleJsonLd({ post }: { post: Post }) {
         '@type': 'Article',
         headline: post.title,
         description: post.excerpt,
-        image: `${SITE.url}${post.image}`,
+        image: absoluteImage(post.image),
         datePublished: post.publishedAt,
         dateModified: post.updatedAt,
         author: author
@@ -118,7 +123,7 @@ export function collectionPageJsonLd({
   name: string
   description: string
   url: string
-  posts: Post[]
+  posts: PostSummary[]
 }) {
   return {
     '@context': 'https://schema.org',
@@ -139,6 +144,7 @@ export function collectionPageJsonLd({
 }
 
 export function ItemListJsonLd({ post }: { post: Post }) {
+  if (post.agencies.length === 0) return null
   return (
     <JsonLd
       data={{

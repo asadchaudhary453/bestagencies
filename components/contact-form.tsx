@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { Send, CheckCircle2, AlertCircle } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { Send, CheckCircle2, AlertCircle, RotateCcw } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const inputClass =
@@ -68,6 +68,21 @@ export function ContactForm() {
     {},
   )
 
+  function resetForm() {
+    setValues({ name: '', email: '', subject: '', message: '' })
+    setErrors({})
+    setTouched({})
+    setSubmitError('')
+    setSent(false)
+  }
+
+  // Automatically show the form again a few seconds after a successful send.
+  useEffect(() => {
+    if (!sent) return
+    const timer = setTimeout(resetForm, 8000)
+    return () => clearTimeout(timer)
+  }, [sent])
+
   function setValue(field: keyof Fields, value: string) {
     setValues((v) => ({ ...v, [field]: value }))
     // Live re-validation, but only after the field has been visited once,
@@ -128,8 +143,16 @@ export function ContactForm() {
         <h3 className="font-heading text-xl font-semibold">Message sent</h3>
         <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
           Thanks for getting in touch. A member of our editorial team will reply
-          within two working days.
+          within 24 hours.
         </p>
+        <button
+          type="button"
+          onClick={resetForm}
+          className="mt-2 inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
+        >
+          <RotateCcw className="h-4 w-4" aria-hidden="true" />
+          Send another message
+        </button>
       </div>
     )
   }

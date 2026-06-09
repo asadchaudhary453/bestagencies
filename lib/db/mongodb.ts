@@ -55,6 +55,10 @@ async function dbConnect(): Promise<typeof mongoose | null> {
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
+      // Fail fast when the database is unreachable so pages and builds
+      // fall back to empty content instead of hanging for 30s per query.
+      serverSelectionTimeoutMS: 5000,
+      connectTimeoutMS: 5000,
     };
 
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
