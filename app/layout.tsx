@@ -5,6 +5,7 @@ import { SITE } from '@/lib/site'
 import { OrganizationJsonLd, WebsiteJsonLd } from '@/components/seo/json-ld'
 import { SiteHeader } from '@/components/layout/site-header'
 import { SiteFooter } from '@/components/layout/site-footer'
+import { SiteChrome } from '@/components/layout/site-chrome'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { ScrollToTop } from '@/components/scroll-to-top'
 import './globals.css'
@@ -97,9 +98,13 @@ export default function RootLayout({
         <OrganizationJsonLd />
         <WebsiteJsonLd />
         <ScrollReveal />
-        <SiteHeader />
+        <SiteChrome>
+          <SiteHeader />
+        </SiteChrome>
         {children}
-        <SiteFooter />
+        <SiteChrome>
+          <SiteFooter />
+        </SiteChrome>
         <ScrollToTop />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

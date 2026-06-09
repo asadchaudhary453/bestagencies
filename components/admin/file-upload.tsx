@@ -142,33 +142,33 @@ export function FileUpload({
             "relative border-2 border-dashed rounded-xl p-6 transition-all duration-300 cursor-pointer",
             "flex flex-col items-center justify-center gap-3 min-h-[150px]",
             isDragging
-              ? "border-[#ecb41a] bg-[#ecb41a]/10"
-              : "border-[#262626] bg-[#1a1a1a] hover:border-[#ecb41a]/60 hover:bg-[#ecb41a]/5",
+              ? "border-primary bg-primary/10"
+              : "border-border bg-card hover:border-primary/60 hover:bg-primary/5",
             error && "border-red-500/60",
           )}
         >
           <input ref={fileInputRef} type="file" accept={accept} onChange={handleFileInput} className="hidden" />
 
-          <div className="relative w-14 h-14 rounded-xl bg-gradient-to-br from-[#ecb41a]/20 via-[#d4a017]/15 to-[#ecb41a]/20 flex items-center justify-center border border-[#ecb41a]/20">
+          <div className="relative w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 via-primary/15 to-primary/20 flex items-center justify-center border border-primary/20">
             {isUploading ? (
-              <div className="w-6 h-6 border-2 border-[#ecb41a]/30 border-t-[#ecb41a] rounded-full animate-spin" />
+              <div className="w-6 h-6 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
             ) : (
-              <Upload className="w-6 h-6 text-[#ecb41a]" />
+              <Upload className="w-6 h-6 text-primary" />
             )}
           </div>
 
           <div className="text-center">
-            <p className="text-sm font-semibold text-white">{isUploading ? "Uploading..." : label}</p>
-            <p className="text-xs text-neutral-400 mt-1">Drag & drop or click to browse</p>
-            <p className="text-xs text-neutral-500 mt-0.5">Max size: {maxSize / (1024 * 1024)}MB</p>
+            <p className="text-sm font-semibold text-foreground">{isUploading ? "Uploading..." : label}</p>
+            <p className="text-xs text-muted-foreground mt-1">Drag & drop or click to browse</p>
+            <p className="text-xs text-muted-foreground mt-0.5">Max size: {maxSize / (1024 * 1024)}MB</p>
           </div>
         </div>
       ) : (
-        <div className="relative rounded-xl overflow-hidden border-2 border-[#262626] bg-[#1a1a1a]">
+        <div className="relative rounded-xl overflow-hidden border-2 border-border bg-card">
           <img
             src={preview || "/placeholder.svg"}
             alt="Preview"
-            className="w-full h-40 object-contain bg-[#0d0d0d]"
+            className="w-full h-40 object-contain bg-muted"
           />
           <div className="absolute top-2 right-2 flex gap-2">
             <Button
@@ -182,12 +182,12 @@ export function FileUpload({
             </Button>
           </div>
           {isUploading && (
-            <div className="absolute inset-0 bg-[#0a0a0a]/80 flex items-center justify-center">
-              <div className="w-8 h-8 border-2 border-[#ecb41a]/30 border-t-[#ecb41a] rounded-full animate-spin" />
+            <div className="absolute inset-0 bg-background/80 flex items-center justify-center">
+              <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
             </div>
           )}
           {!isUploading && isUploadComplete && (
-            <div className="absolute bottom-2 left-2 flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400">
+            <div className="absolute bottom-2 left-2 flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-600">
               <CheckCircle2 className="h-3.5 w-3.5" />
               <span className="text-xs font-medium">Uploaded</span>
             </div>
@@ -196,7 +196,7 @@ export function FileUpload({
       )}
 
       {(uploadError || error) && (
-        <p className="text-xs text-red-400 font-semibold flex items-center gap-1">
+        <p className="text-xs text-destructive font-semibold flex items-center gap-1">
           <AlertCircle className="h-3 w-3" />
           {uploadError || error}
         </p>

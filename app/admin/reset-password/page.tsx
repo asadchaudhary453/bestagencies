@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { ResetPasswordForm } from "@/components/admin/reset-password-form";
 
 export const metadata: Metadata = {
-  title: "Reset Password | AAM Consultants Admin",
+  title: "Reset Password | Best Agencies Admin",
   description: "Create a new password for your account",
   robots: {
     index: false,
@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 export default function ResetPasswordPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-[#0a0a0a]">
-        <div className="animate-spin w-8 h-8 border-2 border-[#ecb41a] border-t-transparent rounded-full" />
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="animate-spin w-8 h-8 border-2 border-primary border-t-transparent rounded-full" />
       </div>
     }>
       <ResetPasswordForm />

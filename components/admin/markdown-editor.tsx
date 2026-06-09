@@ -487,25 +487,25 @@ export function MarkdownEditor({
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <Label htmlFor="content" className="text-sm font-medium text-white/70">
-          {label} {required && <span className="text-[#ecb41a]">*</span>}
+        <Label htmlFor="content" className="text-sm font-medium text-muted-foreground">
+          {label} {required && <span className="text-primary">*</span>}
         </Label>
         <div className="flex items-center space-x-2">
-          <Badge variant="outline" className="text-xs border-[#ecb41a]/40 text-[#ecb41a] bg-[#ecb41a]/10">
+          <Badge variant="outline" className="text-xs border-primary/40 text-primary bg-primary/10">
             {mode === "html" ? "HTML Mode" : "Markdown Mode"}
           </Badge>
           {isConverting && (
-            <Badge variant="secondary" className="text-xs animate-pulse bg-white/10 text-white/50">
+            <Badge variant="secondary" className="text-xs animate-pulse bg-muted text-muted-foreground">
               Converting...
             </Badge>
           )}
-          <div className="flex rounded-lg border border-white/10 bg-[#1a1a1a] p-1">
+          <div className="flex rounded-lg border border-border bg-card p-1">
             <Button
               type="button"
               variant={mode === "html" ? "default" : "ghost"}
               size="sm"
               onClick={() => handleModeToggle("html")}
-              className={`h-7 px-2 text-xs ${mode === "html" ? "bg-gradient-to-r from-[#ecb41a] to-[#f5d060] text-white shadow-sm" : "text-white/50 hover:text-white hover:bg-[#ecb41a]/15"}`}
+              className={`h-7 px-2 text-xs ${mode === "html" ? "bg-gradient-to-r from-primary to-primary text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground hover:bg-primary/15"}`}
               disabled={isConverting}
             >
               <Code className="h-3 w-3 mr-1" />
@@ -516,7 +516,7 @@ export function MarkdownEditor({
               variant={mode === "markdown" ? "default" : "ghost"}
               size="sm"
               onClick={() => handleModeToggle("markdown")}
-              className={`h-7 px-2 text-xs ${mode === "markdown" ? "bg-gradient-to-r from-[#ecb41a] to-[#f5d060] text-white shadow-sm" : "text-white/50 hover:text-white hover:bg-[#ecb41a]/15"}`}
+              className={`h-7 px-2 text-xs ${mode === "markdown" ? "bg-gradient-to-r from-primary to-primary text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground hover:bg-primary/15"}`}
               disabled={isConverting}
             >
               <FileText className="h-3 w-3 mr-1" />
@@ -528,14 +528,14 @@ export function MarkdownEditor({
 
       {mode === "html" ? (
         <Tabs defaultValue="write" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 bg-[#1a1a1a] border border-white/10">
-            <TabsTrigger value="write" className="flex items-center space-x-1 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#ecb41a] data-[state=active]:to-[#f5d060] data-[state=active]:text-white text-white/50">
+          <TabsList className="grid w-full grid-cols-2 bg-card border border-border">
+            <TabsTrigger value="write" className="flex items-center space-x-1 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-primary data-[state=active]:text-foreground text-muted-foreground">
               <Edit className="h-3 w-3" />
               <span>Write HTML</span>
             </TabsTrigger>
             <TabsTrigger
               value="preview"
-              className="flex items-center space-x-1 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#ecb41a] data-[state=active]:to-[#f5d060] data-[state=active]:text-white text-white/50"
+              className="flex items-center space-x-1 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-primary data-[state=active]:text-foreground text-muted-foreground"
             >
               <Eye className="h-3 w-3" />
               <span>Preview</span>
@@ -543,14 +543,14 @@ export function MarkdownEditor({
           </TabsList>
 
           <TabsContent value="write" className="mt-4">
-            <div className="sticky top-0 z-50 border border-white/10 rounded-t-md p-3 bg-[#1a1a1a]/95 backdrop-blur-sm shadow-sm">
+            <div className="sticky top-0 z-50 border border-border rounded-t-md p-3 bg-card/95 backdrop-blur-sm shadow-sm">
               <div className="flex flex-wrap gap-1">
                 <Button
                   type="button"
                   variant="ghost"
                   size="sm"
                   onClick={formatBold}
-                  className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                   title="Bold"
                 >
                   <Bold className="h-4 w-4" />
@@ -560,7 +560,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatItalic}
-                  className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                   title="Italic"
                 >
                   <Italic className="h-4 w-4" />
@@ -570,20 +570,20 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatCode}
-                  className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                   title="Inline Code"
                 >
                   <Code className="h-4 w-4" />
                 </Button>
 
-                <div className="w-px h-6 bg-white/10 mx-1" />
+                <div className="w-px h-6 bg-muted mx-1" />
 
                 <Button
                   type="button"
                   variant="ghost"
                   size="sm"
                   onClick={formatH1}
-                  className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                   title="Heading 1"
                 >
                   <Heading1 className="h-4 w-4" />
@@ -593,7 +593,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatH2}
-                  className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                   title="Heading 2"
                 >
                   <Heading2 className="h-4 w-4" />
@@ -603,20 +603,20 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatH3}
-                  className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                   title="Heading 3"
                 >
                   <Heading3 className="h-4 w-4" />
                 </Button>
 
-                <div className="w-px h-6 bg-white/10 mx-1" />
+                <div className="w-px h-6 bg-muted mx-1" />
 
                 <Button
                   type="button"
                   variant="ghost"
                   size="sm"
                   onClick={formatBulletList}
-                  className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                   title="Bullet List"
                 >
                   <List className="h-4 w-4" />
@@ -626,7 +626,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatNumberedList}
-                  className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                   title="Numbered List"
                 >
                   <ListOrdered className="h-4 w-4" />
@@ -636,13 +636,13 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatQuote}
-                  className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                   title="Quote"
                 >
                   <Quote className="h-4 w-4" />
                 </Button>
 
-                <div className="w-px h-6 bg-white/10 mx-1" />
+                <div className="w-px h-6 bg-muted mx-1" />
 
                 <Dialog open={linkDialogOpen} onOpenChange={setLinkDialogOpen}>
                   <DialogTrigger asChild>
@@ -651,29 +651,29 @@ export function MarkdownEditor({
                       variant="ghost"
                       size="sm"
                       onClick={openLinkDialog}
-                      className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                      className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                       title="Insert Link"
                     >
                       <LinkIcon className="h-4 w-4" />
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-md bg-[#1a1a1a] border-white/10">
+                  <DialogContent className="sm:max-w-md bg-card border-border">
                     <DialogHeader>
-                      <DialogTitle className="text-white">Insert Link</DialogTitle>
+                      <DialogTitle className="text-foreground">Insert Link</DialogTitle>
                     </DialogHeader>
                     <div className="space-y-4">
                       <div>
-                        <Label htmlFor="link-text" className="text-white/70">Link Text</Label>
+                        <Label htmlFor="link-text" className="text-muted-foreground">Link Text</Label>
                         <Input
                           id="link-text"
                           value={linkText}
                           onChange={(e) => setLinkText(e.target.value)}
                           placeholder="Enter link text"
-                          className="bg-white/5 border-white/10 text-white placeholder:text-white/30"
+                          className="bg-muted border-border text-foreground placeholder:text-muted-foreground"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="link-url" className="text-white/70">URL</Label>
+                        <Label htmlFor="link-url" className="text-muted-foreground">URL</Label>
                         <Input
                           id="link-url"
                           value={linkUrl}
@@ -682,15 +682,15 @@ export function MarkdownEditor({
                             if (linkError) setLinkError("");
                           }}
                           placeholder="https://example.com"
-                          className="bg-white/5 border-white/10 text-white placeholder:text-white/30"
+                          className="bg-muted border-border text-foreground placeholder:text-muted-foreground"
                         />
                         {linkError && (
-                          <p className="text-red-400 text-sm mt-1">{linkError}</p>
+                          <p className="text-destructive text-sm mt-1">{linkError}</p>
                         )}
                       </div>
                       <Button
                         onClick={insertLink}
-                        className="w-full bg-gradient-to-r from-[#ecb41a] to-[#f5d060] hover:from-[#005a9a] hover:to-[#ecb41a] text-white"
+                        className="w-full bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-foreground"
                       >
                         Insert Link
                       </Button>
@@ -704,66 +704,66 @@ export function MarkdownEditor({
                       type="button"
                       variant="ghost"
                       size="sm"
-                      className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                      className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                       title="Insert Image"
                     >
                       <ImageIcon className="h-4 w-4" />
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-md bg-[#1a1a1a] border-white/10">
+                  <DialogContent className="sm:max-w-md bg-card border-border">
                     <DialogHeader>
-                      <DialogTitle className="text-white">Insert Image</DialogTitle>
+                      <DialogTitle className="text-foreground">Insert Image</DialogTitle>
                     </DialogHeader>
                     <div className="space-y-4">
                       <div>
-                        <Label htmlFor="image-upload" className="text-white/70">Upload Image</Label>
+                        <Label htmlFor="image-upload" className="text-muted-foreground">Upload Image</Label>
                         <div className="flex items-center space-x-2">
                           <Input
                             id="image-upload"
                             type="file"
                             accept="image/*"
                             onChange={handleImageUpload}
-                            className="flex-1 bg-white/5 border-white/10 text-white"
+                            className="flex-1 bg-muted border-border text-foreground"
                             disabled={isUploading}
                           />
                           {isUploading ? (
-                            <div className="animate-spin h-4 w-4 border-2 border-[#ecb41a] border-t-transparent rounded-full" />
+                            <div className="animate-spin h-4 w-4 border-2 border-primary border-t-transparent rounded-full" />
                           ) : (
-                            <Upload className="h-4 w-4 text-white/50" />
+                            <Upload className="h-4 w-4 text-muted-foreground" />
                           )}
                         </div>
                         {isUploading && (
-                          <p className="text-xs text-white/40 mt-1">
+                          <p className="text-xs text-muted-foreground mt-1">
                             Uploading image...
                           </p>
                         )}
                       </div>
-                      <div className="text-center text-sm text-white/40">
+                      <div className="text-center text-sm text-muted-foreground">
                         or
                       </div>
                       <div>
-                        <Label htmlFor="image-url" className="text-white/70">Image URL</Label>
+                        <Label htmlFor="image-url" className="text-muted-foreground">Image URL</Label>
                         <Input
                           id="image-url"
                           value={imageUrl}
                           onChange={(e) => setImageUrl(e.target.value)}
                           placeholder="https://example.com/image.jpg"
-                          className="bg-white/5 border-white/10 text-white placeholder:text-white/30"
+                          className="bg-muted border-border text-foreground placeholder:text-muted-foreground"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="image-alt" className="text-white/70">Alt Text</Label>
+                        <Label htmlFor="image-alt" className="text-muted-foreground">Alt Text</Label>
                         <Input
                           id="image-alt"
                           value={imageAlt}
                           onChange={(e) => setImageAlt(e.target.value)}
                           placeholder="Describe the image"
-                          className="bg-white/5 border-white/10 text-white placeholder:text-white/30"
+                          className="bg-muted border-border text-foreground placeholder:text-muted-foreground"
                         />
                       </div>
                       <Button
                         onClick={insertImage}
-                        className="w-full bg-gradient-to-r from-[#ecb41a] to-[#f5d060] hover:from-[#005a9a] hover:to-[#ecb41a] text-white"
+                        className="w-full bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-foreground"
                         disabled={isUploading}
                       >
                         Insert Image
@@ -780,17 +780,17 @@ export function MarkdownEditor({
               onChange={handleTextareaChange}
               placeholder="Write your blog post content in HTML format..."
               rows={rows}
-              className={`font-mono text-sm rounded-t-none border-t-0 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-[#ecb41a]/50 ${className}`}
+              className={`font-mono text-sm rounded-t-none border-t-0 bg-muted border-border text-foreground placeholder:text-muted-foreground focus:border-primary/50 ${className}`}
               required={required}
             />
-            <p className="text-xs text-white/40 mt-1 font-sans">
+            <p className="text-xs text-muted-foreground mt-1 font-sans">
               You can use HTML tags for formatting. Content will be rendered as
               HTML on the blog page.
             </p>
           </TabsContent>
 
           <TabsContent value="preview" className="mt-4">
-            <Card className="bg-[#1a1a1a]/80 border-white/10">
+            <Card className="bg-card/80 border-border">
               <CardContent className="p-6">
                 {value ? (
                   <div
@@ -798,27 +798,27 @@ export function MarkdownEditor({
                     dangerouslySetInnerHTML={{ __html: previewHtml }}
                   />
                 ) : (
-                  <p className="text-white/40 text-sm italic font-sans">
+                  <p className="text-muted-foreground text-sm italic font-sans">
                     Start writing in the Write tab to see a preview here...
                   </p>
                 )}
               </CardContent>
             </Card>
-            <p className="text-xs text-white/40 mt-2 font-sans">
+            <p className="text-xs text-muted-foreground mt-2 font-sans">
               This is how your HTML content will appear on the blog page.
             </p>
           </TabsContent>
         </Tabs>
       ) : (
         <Tabs defaultValue="write" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 bg-[#1a1a1a] border border-white/10">
-            <TabsTrigger value="write" className="flex items-center space-x-1 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#ecb41a] data-[state=active]:to-[#f5d060] data-[state=active]:text-white text-white/50">
+          <TabsList className="grid w-full grid-cols-2 bg-card border border-border">
+            <TabsTrigger value="write" className="flex items-center space-x-1 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-primary data-[state=active]:text-foreground text-muted-foreground">
               <Edit className="h-3 w-3" />
               <span>Write</span>
             </TabsTrigger>
             <TabsTrigger
               value="preview"
-              className="flex items-center space-x-1 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#ecb41a] data-[state=active]:to-[#f5d060] data-[state=active]:text-white text-white/50"
+              className="flex items-center space-x-1 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-primary data-[state=active]:text-foreground text-muted-foreground"
             >
               <Eye className="h-3 w-3" />
               <span>Preview</span>
@@ -826,14 +826,14 @@ export function MarkdownEditor({
           </TabsList>
 
           <TabsContent value="write" className="mt-4">
-            <div className="sticky top-0 z-50 border border-white/10 rounded-t-md p-3 bg-[#1a1a1a]/95 backdrop-blur-sm shadow-sm">
+            <div className="sticky top-0 z-50 border border-border rounded-t-md p-3 bg-card/95 backdrop-blur-sm shadow-sm">
               <div className="flex flex-wrap gap-1">
                 <Button
                   type="button"
                   variant="ghost"
                   size="sm"
                   onClick={formatBold}
-                  className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                   title="Bold (Ctrl+B)"
                 >
                   <Bold className="h-4 w-4" />
@@ -843,7 +843,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatItalic}
-                  className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                   title="Italic (Ctrl+I)"
                 >
                   <Italic className="h-4 w-4" />
@@ -853,20 +853,20 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatCode}
-                  className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                   title="Inline Code"
                 >
                   <Code className="h-4 w-4" />
                 </Button>
 
-                <div className="w-px h-6 bg-white/10 mx-1" />
+                <div className="w-px h-6 bg-muted mx-1" />
 
                 <Button
                   type="button"
                   variant="ghost"
                   size="sm"
                   onClick={formatH1}
-                  className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                   title="Heading 1"
                 >
                   <Heading1 className="h-4 w-4" />
@@ -876,7 +876,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatH2}
-                  className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                   title="Heading 2"
                 >
                   <Heading2 className="h-4 w-4" />
@@ -886,20 +886,20 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatH3}
-                  className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                   title="Heading 3"
                 >
                   <Heading3 className="h-4 w-4" />
                 </Button>
 
-                <div className="w-px h-6 bg-white/10 mx-1" />
+                <div className="w-px h-6 bg-muted mx-1" />
 
                 <Button
                   type="button"
                   variant="ghost"
                   size="sm"
                   onClick={formatBulletList}
-                  className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                   title="Bullet List"
                 >
                   <List className="h-4 w-4" />
@@ -909,7 +909,7 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatNumberedList}
-                  className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                   title="Numbered List"
                 >
                   <ListOrdered className="h-4 w-4" />
@@ -919,13 +919,13 @@ export function MarkdownEditor({
                   variant="ghost"
                   size="sm"
                   onClick={formatQuote}
-                  className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                  className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                   title="Quote"
                 >
                   <Quote className="h-4 w-4" />
                 </Button>
 
-                <div className="w-px h-6 bg-white/10 mx-1" />
+                <div className="w-px h-6 bg-muted mx-1" />
 
                 <Dialog open={linkDialogOpen} onOpenChange={setLinkDialogOpen}>
                   <DialogTrigger asChild>
@@ -934,29 +934,29 @@ export function MarkdownEditor({
                       variant="ghost"
                       size="sm"
                       onClick={openLinkDialog}
-                      className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                      className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                       title="Insert Link"
                     >
                       <LinkIcon className="h-4 w-4" />
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-md bg-[#1a1a1a] border-white/10">
+                  <DialogContent className="sm:max-w-md bg-card border-border">
                     <DialogHeader>
-                      <DialogTitle className="text-white">Insert Link</DialogTitle>
+                      <DialogTitle className="text-foreground">Insert Link</DialogTitle>
                     </DialogHeader>
                     <div className="space-y-4">
                       <div>
-                        <Label htmlFor="link-text" className="text-white/70">Link Text</Label>
+                        <Label htmlFor="link-text" className="text-muted-foreground">Link Text</Label>
                         <Input
                           id="link-text"
                           value={linkText}
                           onChange={(e) => setLinkText(e.target.value)}
                           placeholder="Enter link text"
-                          className="bg-white/5 border-white/10 text-white placeholder:text-white/30"
+                          className="bg-muted border-border text-foreground placeholder:text-muted-foreground"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="link-url" className="text-white/70">URL</Label>
+                        <Label htmlFor="link-url" className="text-muted-foreground">URL</Label>
                         <Input
                           id="link-url"
                           value={linkUrl}
@@ -965,17 +965,17 @@ export function MarkdownEditor({
                             if (linkError) setLinkError("");
                           }}
                           placeholder="https://example.com"
-                          className="bg-white/5 border-white/10 text-white placeholder:text-white/30"
+                          className="bg-muted border-border text-foreground placeholder:text-muted-foreground"
                         />
                         {linkError && (
-                          <p className="text-red-400 text-sm mt-1">
+                          <p className="text-destructive text-sm mt-1">
                             {linkError}
                           </p>
                         )}
                       </div>
                       <Button
                         onClick={insertLink}
-                        className="w-full bg-gradient-to-r from-[#ecb41a] to-[#f5d060] hover:from-[#005a9a] hover:to-[#ecb41a] text-white"
+                        className="w-full bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-foreground"
                       >
                         Insert Link
                       </Button>
@@ -992,66 +992,66 @@ export function MarkdownEditor({
                       type="button"
                       variant="ghost"
                       size="sm"
-                      className="h-8 px-2 text-white/50 hover:bg-[#ecb41a] hover:text-white transition-colors"
+                      className="h-8 px-2 text-muted-foreground hover:bg-primary hover:text-foreground transition-colors"
                       title="Insert Image"
                     >
                       <ImageIcon className="h-4 w-4" />
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-md bg-[#1a1a1a] border-white/10">
+                  <DialogContent className="sm:max-w-md bg-card border-border">
                     <DialogHeader>
-                      <DialogTitle className="text-white">Insert Image</DialogTitle>
+                      <DialogTitle className="text-foreground">Insert Image</DialogTitle>
                     </DialogHeader>
                     <div className="space-y-4">
                       <div>
-                        <Label htmlFor="image-upload" className="text-white/70">Upload Image</Label>
+                        <Label htmlFor="image-upload" className="text-muted-foreground">Upload Image</Label>
                         <div className="flex items-center space-x-2">
                           <Input
                             id="image-upload"
                             type="file"
                             accept="image/*"
                             onChange={handleImageUpload}
-                            className="flex-1 bg-white/5 border-white/10 text-white"
+                            className="flex-1 bg-muted border-border text-foreground"
                             disabled={isUploading}
                           />
                           {isUploading ? (
-                            <div className="animate-spin h-4 w-4 border-2 border-[#ecb41a] border-t-transparent rounded-full" />
+                            <div className="animate-spin h-4 w-4 border-2 border-primary border-t-transparent rounded-full" />
                           ) : (
-                            <Upload className="h-4 w-4 text-white/50" />
+                            <Upload className="h-4 w-4 text-muted-foreground" />
                           )}
                         </div>
                         {isUploading && (
-                          <p className="text-xs text-white/40 mt-1">
+                          <p className="text-xs text-muted-foreground mt-1">
                             Uploading image...
                           </p>
                         )}
                       </div>
-                      <div className="text-center text-sm text-white/40">
+                      <div className="text-center text-sm text-muted-foreground">
                         or
                       </div>
                       <div>
-                        <Label htmlFor="image-url" className="text-white/70">Image URL</Label>
+                        <Label htmlFor="image-url" className="text-muted-foreground">Image URL</Label>
                         <Input
                           id="image-url"
                           value={imageUrl}
                           onChange={(e) => setImageUrl(e.target.value)}
                           placeholder="https://example.com/image.jpg"
-                          className="bg-white/5 border-white/10 text-white placeholder:text-white/30"
+                          className="bg-muted border-border text-foreground placeholder:text-muted-foreground"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="image-alt" className="text-white/70">Alt Text</Label>
+                        <Label htmlFor="image-alt" className="text-muted-foreground">Alt Text</Label>
                         <Input
                           id="image-alt"
                           value={imageAlt}
                           onChange={(e) => setImageAlt(e.target.value)}
                           placeholder="Describe the image"
-                          className="bg-white/5 border-white/10 text-white placeholder:text-white/30"
+                          className="bg-muted border-border text-foreground placeholder:text-muted-foreground"
                         />
                       </div>
                       <Button
                         onClick={insertImage}
-                        className="w-full bg-gradient-to-r from-[#ecb41a] to-[#f5d060] hover:from-[#005a9a] hover:to-[#ecb41a] text-white"
+                        className="w-full bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-foreground"
                         disabled={isUploading}
                       >
                         Insert Image
@@ -1069,15 +1069,15 @@ export function MarkdownEditor({
               onChange={handleTextareaChange}
               placeholder="Write your blog post content in Markdown format..."
               rows={rows}
-              className={`font-mono text-sm rounded-t-none border-t-0 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-[#ecb41a]/50 ${className}`}
+              className={`font-mono text-sm rounded-t-none border-t-0 bg-muted border-border text-foreground placeholder:text-muted-foreground focus:border-primary/50 ${className}`}
               required={required}
             />
-            <div className="mt-2 text-xs text-white/40 space-y-1 font-sans">
+            <div className="mt-2 text-xs text-muted-foreground space-y-1 font-sans">
               <p>
                 Use the toolbar above for easy formatting, or write in Markdown
                 format directly.
               </p>
-              <p className="font-medium text-[#ecb41a]">
+              <p className="font-medium text-primary">
                 Quick reference: **bold**, *italic*, [link](url), ![image](url),
                 `code`, &lt;blockquote&gt;
               </p>
@@ -1085,7 +1085,7 @@ export function MarkdownEditor({
           </TabsContent>
 
           <TabsContent value="preview" className="mt-4">
-            <Card className="bg-[#1a1a1a]/80 border-white/10">
+            <Card className="bg-card/80 border-border">
               <CardContent className="p-6">
                 {value ? (
                   <div
@@ -1093,13 +1093,13 @@ export function MarkdownEditor({
                     dangerouslySetInnerHTML={{ __html: previewHtml }}
                   />
                 ) : (
-                  <p className="text-white/40 text-sm italic font-sans">
+                  <p className="text-muted-foreground text-sm italic font-sans">
                     Start writing in the Write tab to see a preview here...
                   </p>
                 )}
               </CardContent>
             </Card>
-            <p className="text-xs text-white/40 mt-2 font-sans">
+            <p className="text-xs text-muted-foreground mt-2 font-sans">
               This is how your content will appear when converted to HTML and
               displayed on the blog.
             </p>

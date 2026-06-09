@@ -70,7 +70,7 @@ export async function POST(request: Request) {
     const { error } = await resend.emails.send({
       from: RESEND_FROM_EMAIL,
       to: user.email,
-      subject: "Reset Your Password - AAM Consultants Admin",
+      subject: "Reset Your Password - Best Agencies Admin",
       html: getPasswordResetEmailHtml({ name: user.name, resetUrl }),
       text: getPasswordResetEmailText({ name: user.name, resetUrl }),
     });

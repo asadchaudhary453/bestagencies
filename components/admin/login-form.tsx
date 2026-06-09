@@ -135,7 +135,7 @@ export function LoginForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
         {error && (
           <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 animate-in fade-in slide-in-from-top-2 duration-300">
-            <p className="text-red-400 text-sm text-center">{error}</p>
+            <p className="text-destructive text-sm text-center">{error}</p>
           </div>
         )}
 
@@ -144,21 +144,21 @@ export function LoginForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white/70 font-medium">Email Address</FormLabel>
+              <FormLabel className="text-muted-foreground font-medium">Email Address</FormLabel>
               <FormControl>
                 <div className="relative group">
-                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-white/30 group-focus-within:text-[#ecb41a] transition-colors" />
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
                   <Input
                     type="email"
-                    placeholder="admin@aamconsultants.org"
+                    placeholder="you@example.com"
                     autoComplete="email"
                     disabled={isLoading}
-                    className="pl-12 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-[#ecb41a] focus:ring-[#ecb41a]/20 h-12 rounded-xl transition-all"
+                    className="pl-12 bg-muted border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20 h-12 rounded-xl transition-all"
                     {...field}
                   />
                 </div>
               </FormControl>
-              <FormMessage className="text-red-400" />
+              <FormMessage className="text-destructive" />
             </FormItem>
           )}
         />
@@ -169,7 +169,7 @@ export function LoginForm() {
           render={({ field }) => (
             <FormItem>
               <div className="flex items-center justify-between">
-                <FormLabel className="text-white/70 font-medium">Password</FormLabel>
+                <FormLabel className="text-muted-foreground font-medium">Password</FormLabel>
                 <Dialog
                   open={forgotPasswordOpen}
                   onOpenChange={(open) => {
@@ -180,22 +180,22 @@ export function LoginForm() {
                   <DialogTrigger asChild>
                     <button
                       type="button"
-                      className="text-sm text-[#ecb41a] hover:text-[#f5d060] transition-colors font-medium"
+                      className="text-sm text-primary hover:text-primary transition-colors font-medium"
                     >
                       Forgot password?
                     </button>
                   </DialogTrigger>
-                  <DialogContent className="bg-[#1a1a1a] border-white/10 text-white sm:max-w-md">
+                  <DialogContent className="bg-card border-border text-foreground sm:max-w-md">
                     {forgotPasswordSuccess ? (
                       <div className="py-8 text-center">
-                        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#ecb41a]/20 flex items-center justify-center">
-                          <CheckCircle2 className="w-8 h-8 text-[#ecb41a]" />
+                        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/20 flex items-center justify-center">
+                          <CheckCircle2 className="w-8 h-8 text-primary" />
                         </div>
                         <DialogHeader>
-                          <DialogTitle className="text-xl text-white text-center">
+                          <DialogTitle className="text-xl text-foreground text-center">
                             Check Your Email
                           </DialogTitle>
-                          <DialogDescription className="text-white/50 text-center mt-2">
+                          <DialogDescription className="text-muted-foreground text-center mt-2">
                             {
                               "A password reset link has been sent. Please check your inbox and spam folder."
                             }
@@ -203,7 +203,7 @@ export function LoginForm() {
                         </DialogHeader>
                         <Button
                           onClick={handleForgotPasswordClose}
-                          className="mt-6 bg-white/10 hover:bg-white/20 text-white"
+                          className="mt-6 bg-muted hover:bg-muted text-foreground"
                         >
                           Close
                         </Button>
@@ -211,8 +211,8 @@ export function LoginForm() {
                     ) : (
                       <>
                         <DialogHeader>
-                          <DialogTitle className="text-xl text-white">Reset Password</DialogTitle>
-                          <DialogDescription className="text-white/50">
+                          <DialogTitle className="text-xl text-foreground">Reset Password</DialogTitle>
+                          <DialogDescription className="text-muted-foreground">
                             {"Enter your email address and we'll send you a link to reset your password."}
                           </DialogDescription>
                         </DialogHeader>
@@ -223,7 +223,7 @@ export function LoginForm() {
                           >
                             {forgotPasswordError && (
                               <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20">
-                                <p className="text-red-400 text-sm text-center">
+                                <p className="text-destructive text-sm text-center">
                                   {forgotPasswordError}
                                 </p>
                               </div>
@@ -233,27 +233,27 @@ export function LoginForm() {
                               name="email"
                               render={({ field }) => (
                                 <FormItem>
-                                  <FormLabel className="text-white/70">Email Address</FormLabel>
+                                  <FormLabel className="text-muted-foreground">Email Address</FormLabel>
                                   <FormControl>
                                     <div className="relative group">
-                                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-white/30 group-focus-within:text-[#ecb41a] transition-colors" />
+                                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
                                       <Input
                                         type="email"
                                         placeholder="Enter your email"
                                         disabled={forgotPasswordLoading}
-                                        className="pl-12 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-[#ecb41a] h-12 rounded-xl"
+                                        className="pl-12 bg-muted border-border text-foreground placeholder:text-muted-foreground focus:border-primary h-12 rounded-xl"
                                         {...field}
                                       />
                                     </div>
                                   </FormControl>
-                                  <FormMessage className="text-red-400" />
+                                  <FormMessage className="text-destructive" />
                                 </FormItem>
                               )}
                             />
                             <Button
                               type="submit"
                               disabled={forgotPasswordLoading}
-                              className="w-full h-12 bg-[#ecb41a] hover:bg-[#f5d060] text-[#0a0a0a] font-semibold rounded-xl"
+                              className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-xl"
                             >
                               {forgotPasswordLoading ? (
                                 <>
@@ -276,13 +276,13 @@ export function LoginForm() {
               </div>
               <FormControl>
                 <div className="relative group">
-                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-white/30 group-focus-within:text-[#ecb41a] transition-colors" />
+                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
                   <Input
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter your password"
                     autoComplete="current-password"
                     disabled={isLoading}
-                    className="pl-12 pr-12 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-[#ecb41a] focus:ring-[#ecb41a]/20 h-12 rounded-xl transition-all"
+                    className="pl-12 pr-12 bg-muted border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20 h-12 rounded-xl transition-all"
                     {...field}
                   />
                   <Button
@@ -294,9 +294,9 @@ export function LoginForm() {
                     tabIndex={-1}
                   >
                     {showPassword ? (
-                      <EyeOff className="h-5 w-5 text-white/30 hover:text-white/50 transition-colors" />
+                      <EyeOff className="h-5 w-5 text-muted-foreground hover:text-muted-foreground transition-colors" />
                     ) : (
-                      <Eye className="h-5 w-5 text-white/30 hover:text-white/50 transition-colors" />
+                      <Eye className="h-5 w-5 text-muted-foreground hover:text-muted-foreground transition-colors" />
                     )}
                     <span className="sr-only">
                       {showPassword ? "Hide password" : "Show password"}
@@ -304,7 +304,7 @@ export function LoginForm() {
                   </Button>
                 </div>
               </FormControl>
-              <FormMessage className="text-red-400" />
+              <FormMessage className="text-destructive" />
             </FormItem>
           )}
         />
@@ -312,7 +312,7 @@ export function LoginForm() {
         <Button
           type="submit"
           className={cn(
-            "w-full h-12 bg-[#ecb41a] hover:bg-[#f5d060] text-[#0a0a0a] font-semibold rounded-xl shadow-lg shadow-[#ecb41a]/25 transition-all duration-300 group",
+            "w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-xl shadow-lg shadow-primary/25 transition-all duration-300 group",
             isLoading && "opacity-80"
           )}
           disabled={isLoading}

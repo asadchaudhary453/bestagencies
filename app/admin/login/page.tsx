@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import { LoginPageContent } from "@/components/admin/login-page-content";
 
 export const metadata: Metadata = {
-  title: "Admin Login | AAM Consultants",
-  description: "Sign in to access the AAM Consultants admin panel",
+  title: "Admin Login | Best Agencies",
+  description: "Sign in to access the Best Agencies admin panel",
   robots: {
     index: false,
     follow: false,

@@ -37,8 +37,8 @@ export function AdminLayout({ children }: AdminLayoutProps) {
 
   if (status === "loading") {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
-        <div className="w-10 h-10 border-4 border-[#ecb41a]/30 border-t-[#ecb41a] rounded-full animate-spin" />
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="w-10 h-10 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
       </div>
     );
   }
@@ -93,7 +93,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
   const isActive = (href: string) => pathname.startsWith(href);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div
@@ -105,26 +105,27 @@ export function AdminLayout({ children }: AdminLayoutProps) {
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed top-0 left-0 h-full w-72 bg-[#1a1a1a] border-r border-white/10 z-50 transition-transform duration-300 lg:translate-x-0",
+          "fixed top-0 left-0 h-full w-72 bg-card border-r border-border z-50 transition-transform duration-300 lg:translate-x-0",
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
         {/* Logo */}
-        <div className="h-16 flex items-center justify-between px-6 border-b border-white/10">
+        <div className="h-16 flex items-center justify-between px-6 border-b border-border">
           <Link href="/admin/blogs" className="flex items-center gap-3">
             <Image
-              src="/assets/images/logo.png"
-              alt="AAM Consultants Admin"
+              src="/best-agencies-logo.png"
+              alt="Best Agencies Admin"
               width={130}
               height={36}
               className="h-9 w-auto object-contain"
+              style={{ width: "auto", height: "2.25rem" }}
               priority
             />
           </Link>
           <Button
             variant="ghost"
             size="icon"
-            className="lg:hidden text-white/50 hover:text-white hover:bg-white/10"
+            className="lg:hidden text-muted-foreground hover:text-foreground hover:bg-muted"
             onClick={() => setSidebarOpen(false)}
             aria-label="Close sidebar"
           >
@@ -142,10 +143,10 @@ export function AdminLayout({ children }: AdminLayoutProps) {
               className={cn(
                 "flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200",
                 item.external
-                  ? "text-white/50 hover:bg-white/5 hover:text-white"
+                  ? "text-muted-foreground hover:bg-muted hover:text-foreground"
                   : isActive(item.href)
-                    ? "bg-gradient-to-r from-[#ecb41a]/20 to-transparent text-white border-l-2 border-[#ecb41a]"
-                    : "text-white/50 hover:bg-white/5 hover:text-white"
+                    ? "bg-gradient-to-r from-primary/20 to-transparent text-foreground border-l-2 border-primary"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
               )}
             >
               <item.icon className="h-5 w-5" />
@@ -157,23 +158,23 @@ export function AdminLayout({ children }: AdminLayoutProps) {
         </nav>
 
         {/* User section */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-white/10">
-          <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/5">
-            <Avatar className="h-10 w-10 border-2 border-[#ecb41a]/50">
-              <AvatarFallback className="bg-gradient-to-br from-[#ecb41a] to-[#b8860b] text-[#0a0a0a] font-semibold">
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-border">
+          <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-muted">
+            <Avatar className="h-10 w-10 border-2 border-primary/50">
+              <AvatarFallback className="bg-gradient-to-br from-primary to-primary text-primary-foreground font-semibold">
                 {initials}
               </AvatarFallback>
             </Avatar>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-white truncate">{user.name}</p>
-              <p className="text-xs text-white/50 truncate">{user.email}</p>
+              <p className="text-sm font-medium text-foreground truncate">{user.name}</p>
+              <p className="text-xs text-muted-foreground truncate">{user.email}</p>
             </div>
             <Badge
               className={cn(
                 "text-xs border",
                 isAdmin
-                  ? "bg-[#ecb41a]/20 text-[#ecb41a] border-[#ecb41a]/30"
-                  : "bg-white/10 text-white/70 border-white/20"
+                  ? "bg-primary/20 text-primary border-primary/30"
+                  : "bg-muted text-muted-foreground border-border"
               )}
             >
               {user.role}
@@ -182,7 +183,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
           <Button
             variant="ghost"
             onClick={handleSignOut}
-            className="w-full mt-2 justify-start text-white/50 hover:text-red-400 hover:bg-red-500/10"
+            className="w-full mt-2 justify-start text-muted-foreground hover:text-destructive hover:bg-red-500/10"
           >
             <LogOut className="h-4 w-4 mr-3" />
             Sign out
@@ -193,22 +194,22 @@ export function AdminLayout({ children }: AdminLayoutProps) {
       {/* Main content */}
       <div className="lg:pl-72">
         {/* Header */}
-        <header className="h-16 flex items-center justify-between px-6 border-b border-white/10 bg-[#0a0a0a]/80 backdrop-blur-xl sticky top-0 z-30">
+        <header className="h-16 flex items-center justify-between px-6 border-b border-border bg-background/80 backdrop-blur-xl sticky top-0 z-30">
           <div className="flex items-center gap-4">
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden text-white/50 hover:text-white hover:bg-white/10"
+              className="lg:hidden text-muted-foreground hover:text-foreground hover:bg-muted"
               onClick={() => setSidebarOpen(true)}
               aria-label="Open sidebar"
             >
               <Menu className="h-5 w-5" />
             </Button>
             <div>
-              <h1 className="text-lg font-semibold text-white">
+              <h1 className="text-lg font-semibold text-foreground">
                 {menuItems.find((item) => isActive(item.href))?.label || "Admin"}
               </h1>
-              <p className="text-sm text-white/40 hidden sm:block">
+              <p className="text-sm text-muted-foreground hidden sm:block">
                 Welcome back, {user.name?.split(" ")[0]}
               </p>
             </div>

@@ -437,18 +437,18 @@ export default function BlogPage() {
     switch (status) {
       case "published":
         return (
-          <Badge className="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/30">
+          <Badge className="bg-emerald-500/20 text-emerald-600 border border-emerald-500/30 hover:bg-emerald-500/30">
             Published
           </Badge>
         )
       case "draft":
         return (
-          <Badge variant="secondary" className="bg-white/10 text-white/60 border border-white/10">
+          <Badge variant="secondary" className="bg-muted text-muted-foreground border border-border">
             Draft
           </Badge>
         )
       default:
-        return <Badge variant="outline" className="border-white/20 text-white/50">Unknown</Badge>
+        return <Badge variant="outline" className="border-border text-muted-foreground">Unknown</Badge>
     }
   }
 
@@ -460,12 +460,12 @@ export default function BlogPage() {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-white" style={{ fontFamily: 'var(--font-display)' }}>Blog Management</h1>
-            <p className="text-white/50">Create and manage blog posts</p>
+            <h1 className="text-3xl font-bold text-foreground" style={{ fontFamily: 'var(--font-display)' }}>Blog Management</h1>
+            <p className="text-muted-foreground">Create and manage blog posts</p>
           </div>
           <Button
             onClick={() => setShowCreateModal(true)}
-            className="bg-gradient-to-r from-[#ecb41a] to-[#f5d060] hover:from-[#005a9a] hover:to-[#ecb41a] text-white shadow-lg shadow-[#ecb41a]/30 transition-all duration-300"
+            className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-foreground shadow-lg shadow-primary/30 transition-all duration-300"
           >
             <Plus className="h-4 w-4 mr-2" />
             New Post
@@ -474,41 +474,41 @@ export default function BlogPage() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card className="bg-white/[0.03] border-white/10 backdrop-blur-sm hover:bg-white/[0.05] transition-all duration-300">
+          <Card className="bg-muted/40 border-border backdrop-blur-sm hover:bg-muted/40 transition-all duration-300">
             <CardContent className="p-5">
               <div className="flex items-center space-x-3">
-                <div className="p-2.5 rounded-xl bg-[#ecb41a]/20 border border-[#ecb41a]/20">
-                  <FileText className="h-5 w-5 text-[#ecb41a]" />
+                <div className="p-2.5 rounded-xl bg-primary/20 border border-primary/20">
+                  <FileText className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-white/50">Total Posts</p>
-                  <p className="text-2xl font-bold text-white">{pagination.totalCount}</p>
+                  <p className="text-sm font-medium text-muted-foreground">Total Posts</p>
+                  <p className="text-2xl font-bold text-foreground">{pagination.totalCount}</p>
                 </div>
               </div>
             </CardContent>
           </Card>
-          <Card className="bg-white/[0.03] border-white/10 backdrop-blur-sm hover:bg-white/[0.05] transition-all duration-300">
+          <Card className="bg-muted/40 border-border backdrop-blur-sm hover:bg-muted/40 transition-all duration-300">
             <CardContent className="p-5">
               <div className="flex items-center space-x-3">
                 <div className="p-2.5 rounded-xl bg-emerald-500/20 border border-emerald-500/20">
-                  <Globe className="h-5 w-5 text-emerald-400" />
+                  <Globe className="h-5 w-5 text-emerald-600" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-white/50">Published</p>
-                  <p className="text-2xl font-bold text-emerald-400">{publishedCount}</p>
+                  <p className="text-sm font-medium text-muted-foreground">Published</p>
+                  <p className="text-2xl font-bold text-emerald-600">{publishedCount}</p>
                 </div>
               </div>
             </CardContent>
           </Card>
-          <Card className="bg-white/[0.03] border-white/10 backdrop-blur-sm hover:bg-white/[0.05] transition-all duration-300">
+          <Card className="bg-muted/40 border-border backdrop-blur-sm hover:bg-muted/40 transition-all duration-300">
             <CardContent className="p-5">
               <div className="flex items-center space-x-3">
-                <div className="p-2.5 rounded-xl bg-[#d4a017]/20 border border-[#d4a017]/20">
-                  <Clock className="h-5 w-5 text-[#d4a017]" />
+                <div className="p-2.5 rounded-xl bg-primary/20 border border-primary/20">
+                  <Clock className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-white/50">Drafts</p>
-                  <p className="text-2xl font-bold text-[#d4a017]">{draftCount}</p>
+                  <p className="text-sm font-medium text-muted-foreground">Drafts</p>
+                  <p className="text-2xl font-bold text-primary">{draftCount}</p>
                 </div>
               </div>
             </CardContent>
@@ -516,25 +516,25 @@ export default function BlogPage() {
         </div>
 
         {/* Filters Card */}
-        <Card className="bg-white/[0.03] border-white/10 backdrop-blur-sm">
+        <Card className="bg-muted/40 border-border backdrop-blur-sm">
           <CardHeader>
-            <CardTitle className="text-white flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-[#ecb41a]" />
+            <CardTitle className="text-foreground flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-primary" />
               Filters
             </CardTitle>
-            <CardDescription className="text-white/40">
+            <CardDescription className="text-muted-foreground">
               Filter blog posts by search, status, and category
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-white/40" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   placeholder="Search posts..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-[#ecb41a]/50 focus:ring-[#ecb41a]/20"
+                  className="pl-10 bg-muted border-border text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:ring-primary/20"
                 />
               </div>
               <Select
@@ -544,13 +544,13 @@ export default function BlogPage() {
                   setPagination((p) => ({ ...p, currentPage: 1 }))
                 }}
               >
-                <SelectTrigger className="bg-white/5 border-white/10 text-white">
+                <SelectTrigger className="bg-muted border-border text-foreground">
                   <SelectValue placeholder="Filter by status" />
                 </SelectTrigger>
-                <SelectContent className="bg-[#1a1a1a] border-white/10">
-                  <SelectItem value="all" className="text-white/70 focus:bg-white/10 focus:text-white">All Statuses</SelectItem>
-                  <SelectItem value="published" className="text-white/70 focus:bg-white/10 focus:text-white">Published</SelectItem>
-                  <SelectItem value="draft" className="text-white/70 focus:bg-white/10 focus:text-white">Draft</SelectItem>
+                <SelectContent className="bg-card border-border">
+                  <SelectItem value="all" className="text-muted-foreground focus:bg-muted focus:text-foreground">All Statuses</SelectItem>
+                  <SelectItem value="published" className="text-muted-foreground focus:bg-muted focus:text-foreground">Published</SelectItem>
+                  <SelectItem value="draft" className="text-muted-foreground focus:bg-muted focus:text-foreground">Draft</SelectItem>
                 </SelectContent>
               </Select>
               <Select
@@ -560,13 +560,13 @@ export default function BlogPage() {
                   setPagination((p) => ({ ...p, currentPage: 1 }))
                 }}
               >
-                <SelectTrigger className="bg-white/5 border-white/10 text-white">
+                <SelectTrigger className="bg-muted border-border text-foreground">
                   <SelectValue placeholder="Filter by category" />
                 </SelectTrigger>
-                <SelectContent className="bg-[#1a1a1a] border-white/10">
-                  <SelectItem value="all" className="text-white/70 focus:bg-white/10 focus:text-white">All Categories</SelectItem>
+                <SelectContent className="bg-card border-border">
+                  <SelectItem value="all" className="text-muted-foreground focus:bg-muted focus:text-foreground">All Categories</SelectItem>
                   {categories.map((category) => (
-                    <SelectItem key={category} value={category} className="text-white/70 focus:bg-white/10 focus:text-white">
+                    <SelectItem key={category} value={category} className="text-muted-foreground focus:bg-muted focus:text-foreground">
                       {category}
                     </SelectItem>
                   ))}
@@ -577,29 +577,29 @@ export default function BlogPage() {
         </Card>
 
         {/* Blog Table */}
-        <Card className="bg-white/[0.03] border-white/10 backdrop-blur-sm">
+        <Card className="bg-muted/40 border-border backdrop-blur-sm">
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-white flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-[#d4a017]" />
+                <CardTitle className="text-foreground flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-primary" />
                   Blog Posts ({pagination.totalCount.toLocaleString()})
                 </CardTitle>
-                <CardDescription className="text-white/40">
+                <CardDescription className="text-muted-foreground">
                   Showing {(pagination.currentPage - 1) * pagination.limit + 1} to{" "}
                   {Math.min(pagination.currentPage * pagination.limit, pagination.totalCount)} of{" "}
                   {pagination.totalCount.toLocaleString()} posts
                 </CardDescription>
               </div>
               <Select value={pagination.limit.toString()} onValueChange={handleLimitChange}>
-                <SelectTrigger className="w-32 border-white/10 bg-white/5 text-white">
+                <SelectTrigger className="w-32 border-border bg-muted text-foreground">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-[#1a1a1a] border-white/10">
-                  <SelectItem value="25" className="text-white/70 focus:bg-white/10 focus:text-white">25 per page</SelectItem>
-                  <SelectItem value="50" className="text-white/70 focus:bg-white/10 focus:text-white">50 per page</SelectItem>
-                  <SelectItem value="75" className="text-white/70 focus:bg-white/10 focus:text-white">75 per page</SelectItem>
-                  <SelectItem value="100" className="text-white/70 focus:bg-white/10 focus:text-white">100 per page</SelectItem>
+                <SelectContent className="bg-card border-border">
+                  <SelectItem value="25" className="text-muted-foreground focus:bg-muted focus:text-foreground">25 per page</SelectItem>
+                  <SelectItem value="50" className="text-muted-foreground focus:bg-muted focus:text-foreground">50 per page</SelectItem>
+                  <SelectItem value="75" className="text-muted-foreground focus:bg-muted focus:text-foreground">75 per page</SelectItem>
+                  <SelectItem value="100" className="text-muted-foreground focus:bg-muted focus:text-foreground">100 per page</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -607,52 +607,52 @@ export default function BlogPage() {
           <CardContent>
             {loading ? (
               <div className="flex items-center justify-center py-12">
-                <div className="w-10 h-10 border-4 border-[#ecb41a]/30 border-t-[#ecb41a] rounded-full animate-spin"></div>
+                <div className="w-10 h-10 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
               </div>
             ) : (
-              <div className="rounded-lg border border-white/10 overflow-hidden">
+              <div className="rounded-lg border border-border overflow-hidden">
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-white/5 border-b border-white/10 hover:bg-white/5">
-                      <TableHead className="text-white/70 font-semibold">Post</TableHead>
-                      <TableHead className="text-white/70 font-semibold">Category</TableHead>
-                      <TableHead className="text-white/70 font-semibold">Status</TableHead>
-                      <TableHead className="text-white/70 font-semibold">Published</TableHead>
-                      <TableHead className="text-right text-white/70 font-semibold">Actions</TableHead>
+                    <TableRow className="bg-muted border-b border-border hover:bg-muted">
+                      <TableHead className="text-muted-foreground font-semibold">Post</TableHead>
+                      <TableHead className="text-muted-foreground font-semibold">Category</TableHead>
+                      <TableHead className="text-muted-foreground font-semibold">Status</TableHead>
+                      <TableHead className="text-muted-foreground font-semibold">Published</TableHead>
+                      <TableHead className="text-right text-muted-foreground font-semibold">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {blogPosts.map((post) => (
-                      <TableRow key={post._id} className="border-b border-white/5 hover:bg-white/[0.03] transition-colors duration-200">
+                      <TableRow key={post._id} className="border-b border-border hover:bg-muted/40 transition-colors duration-200">
                         <TableCell>
                           <div className="flex items-center space-x-3">
                             <img
                               src={post.imageUrl || "/placeholder.svg"}
                               alt={post.title}
-                              className="w-12 h-8 rounded object-cover ring-1 ring-white/10"
+                              className="w-12 h-8 rounded object-cover ring-1 ring-border"
                             />
                             <div className="max-w-md">
                               <a 
                                 href={`/${post.url}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="font-medium line-clamp-1 text-white hover:text-[#ecb41a] transition-colors cursor-pointer"
+                                className="font-medium line-clamp-1 text-foreground hover:text-primary transition-colors cursor-pointer"
                               >
                                 {post.title}
                               </a>
-                              <div className="text-sm text-white/60 line-clamp-1">{post.excerpt}</div>
+                              <div className="text-sm text-muted-foreground line-clamp-1">{post.excerpt}</div>
                             </div>
                           </div>
                         </TableCell>
                         <TableCell>
-                          <Badge variant="outline" className="border-[#ecb41a]/30 text-[#ecb41a] bg-[#ecb41a]/10">
+                          <Badge variant="outline" className="border-primary/30 text-primary bg-primary/10">
                             {post.category}
                           </Badge>
                         </TableCell>
                         <TableCell>{getStatusBadge(post.status)}</TableCell>
                         <TableCell>
-                          <div className="flex items-center space-x-1 text-sm text-white/50">
-                            <Calendar className="h-3 w-3 text-[#ecb41a]" />
+                          <div className="flex items-center space-x-1 text-sm text-muted-foreground">
+                            <Calendar className="h-3 w-3 text-primary" />
                             <span>
                               {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString() : "Not published"}
                             </span>
@@ -665,7 +665,7 @@ export default function BlogPage() {
                                 size="sm"
                                 variant="outline"
                                 onClick={() => handleStatusChange(post._id, "published")}
-                                className="cursor-pointer bg-gradient-to-r from-emerald-500 to-emerald-600 text-white border-emerald-500/50 hover:from-emerald-600 hover:to-emerald-700 shadow-md shadow-emerald-500/25"
+                                className="cursor-pointer bg-gradient-to-r from-emerald-500 to-emerald-600 text-foreground border-emerald-500/50 hover:from-emerald-600 hover:to-emerald-700 shadow-md shadow-emerald-500/25"
                               >
                                 Publish
                               </Button>
@@ -675,22 +675,22 @@ export default function BlogPage() {
                                 size="sm"
                                 variant="outline"
                                 onClick={() => handleStatusChange(post._id, "draft")}
-                                className="cursor-pointer text-[#d4a017] border-white/10 bg-transparent hover:text-[#d4a017] hover:bg-[#d4a017]/10"
+                                className="cursor-pointer text-primary border-border bg-transparent hover:text-primary hover:bg-primary/10"
                               >
                                 Unpublish
                               </Button>
                             )}
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
-                                <Button variant="ghost" size="sm" className="cursor-pointer text-white/50 hover:bg-white/10 hover:text-white">
+                                <Button variant="ghost" size="sm" className="cursor-pointer text-muted-foreground hover:bg-muted hover:text-foreground">
                                   <MoreHorizontal className="h-4 w-4" />
                                 </Button>
                               </DropdownMenuTrigger>
-                              <DropdownMenuContent align="end" className="bg-[#1a1a1a] border-white/10">
+                              <DropdownMenuContent align="end" className="bg-card border-border">
                                 {post.status === "published" && (
                                   <DropdownMenuItem
                                     onClick={() => handleViewPost(post)}
-                                    className="cursor-pointer text-white/70 hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white"
+                                    className="cursor-pointer text-muted-foreground hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground"
                                   >
                                     <ExternalLink className="h-4 w-4 mr-2" />
                                     View Post
@@ -698,21 +698,21 @@ export default function BlogPage() {
                                 )}
                                 <DropdownMenuItem
                                   onClick={() => setSelectedPost(post)}
-                                  className="cursor-pointer text-white/70 hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white"
+                                  className="cursor-pointer text-muted-foreground hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground"
                                 >
                                   <Eye className="h-4 w-4 mr-2" />
                                   View Details
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
                                   onClick={() => handleEditPost(post)}
-                                  className="cursor-pointer text-white/70 hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white"
+                                  className="cursor-pointer text-muted-foreground hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground"
                                 >
                                   <Edit className="h-4 w-4 mr-2" />
                                   Edit Post
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
                                   onClick={() => handleDeleteClick(post)}
-                                  className="cursor-pointer text-red-400 hover:bg-red-500/10 hover:text-red-400 focus:bg-red-500/10 focus:text-red-400"
+                                  className="cursor-pointer text-destructive hover:bg-red-500/10 hover:text-destructive focus:bg-red-500/10 focus:text-destructive"
                                 >
                                   <Trash2 className="h-4 w-4 mr-2" />
                                   Delete
@@ -729,8 +729,8 @@ export default function BlogPage() {
             )}
 
             {!loading && blogPosts.length > 0 && (
-              <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/10">
-                <div className="text-sm text-white/50">
+              <div className="flex items-center justify-between mt-4 pt-4 border-t border-border">
+                <div className="text-sm text-muted-foreground">
                   Page {pagination.currentPage} of {pagination.totalPages}
                 </div>
                 <div className="flex items-center gap-2">
@@ -739,7 +739,7 @@ export default function BlogPage() {
                     size="sm"
                     onClick={() => handlePageChange(1)}
                     disabled={!pagination.hasPrevPage}
-                    className="cursor-pointer border-white/10 text-white/50 bg-transparent hover:bg-white/10 hover:text-white disabled:opacity-40"
+                    className="cursor-pointer border-border text-muted-foreground bg-transparent hover:bg-muted hover:text-foreground disabled:opacity-40"
                   >
                     <ChevronsLeft className="h-4 w-4" />
                   </Button>
@@ -748,7 +748,7 @@ export default function BlogPage() {
                     size="sm"
                     onClick={() => handlePageChange(pagination.currentPage - 1)}
                     disabled={!pagination.hasPrevPage}
-                    className="cursor-pointer border-white/10 text-white/50 bg-transparent hover:bg-white/10 hover:text-white disabled:opacity-40"
+                    className="cursor-pointer border-border text-muted-foreground bg-transparent hover:bg-muted hover:text-foreground disabled:opacity-40"
                   >
                     <ChevronLeft className="h-4 w-4" />
                   </Button>
@@ -757,7 +757,7 @@ export default function BlogPage() {
                     size="sm"
                     onClick={() => handlePageChange(pagination.currentPage + 1)}
                     disabled={!pagination.hasNextPage}
-                    className="cursor-pointer border-white/10 text-white/50 bg-transparent hover:bg-white/10 hover:text-white disabled:opacity-40"
+                    className="cursor-pointer border-border text-muted-foreground bg-transparent hover:bg-muted hover:text-foreground disabled:opacity-40"
                   >
                     <ChevronRight className="h-4 w-4" />
                   </Button>
@@ -766,7 +766,7 @@ export default function BlogPage() {
                     size="sm"
                     onClick={() => handlePageChange(pagination.totalPages)}
                     disabled={!pagination.hasNextPage}
-                    className="cursor-pointer border-white/10 text-white/50 bg-transparent hover:bg-white/10 hover:text-white disabled:opacity-40"
+                    className="cursor-pointer border-border text-muted-foreground bg-transparent hover:bg-muted hover:text-foreground disabled:opacity-40"
                   >
                     <ChevronsRight className="h-4 w-4" />
                   </Button>
@@ -776,9 +776,9 @@ export default function BlogPage() {
 
             {!loading && blogPosts.length === 0 && (
               <div className="text-center py-12">
-                <FileText className="h-12 w-12 text-white/20 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-white/70">No blog posts found</h3>
-                <p className="text-white/40 mt-1">
+                <FileText className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-muted-foreground">No blog posts found</h3>
+                <p className="text-muted-foreground mt-1">
                   {debouncedSearchTerm || statusFilter !== "all" || categoryFilter !== "all"
                     ? "No posts match your current filters. Try adjusting your search or filter criteria."
                     : "Get started by creating your first blog post."}
@@ -786,7 +786,7 @@ export default function BlogPage() {
                 {!debouncedSearchTerm && statusFilter === "all" && categoryFilter === "all" && (
                   <Button
                     onClick={() => setShowCreateModal(true)}
-                    className="mt-4 bg-gradient-to-r from-[#ecb41a] to-[#f5d060] hover:from-[#005a9a] hover:to-[#ecb41a] text-white"
+                    className="mt-4 bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-foreground"
                   >
                     <Plus className="h-4 w-4 mr-2" />
                     Create Post
@@ -799,28 +799,28 @@ export default function BlogPage() {
 
         {/* Delete Confirmation Modal */}
         <Dialog open={showDeleteModal} onOpenChange={setShowDeleteModal}>
-          <DialogContent className="max-w-md bg-[#1a1a1a] border-white/10">
+          <DialogContent className="max-w-md bg-card border-border">
             <DialogHeader>
-              <DialogTitle className="flex items-center space-x-2 text-red-400">
+              <DialogTitle className="flex items-center space-x-2 text-destructive">
                 <AlertTriangle className="h-5 w-5" />
                 <span>Delete Blog Post</span>
               </DialogTitle>
-              <DialogDescription className="text-white/50">
+              <DialogDescription className="text-muted-foreground">
                 Are you sure you want to delete this blog post? This action cannot be undone.
               </DialogDescription>
             </DialogHeader>
 
             {postToDelete && (
               <div className="py-4">
-                <div className="flex items-center space-x-3 p-3 bg-white/5 border border-white/10 rounded-lg">
+                <div className="flex items-center space-x-3 p-3 bg-muted border border-border rounded-lg">
                   <img
                     src={postToDelete.imageUrl || "/placeholder.svg"}
                     alt={postToDelete.title}
-                    className="w-12 h-8 rounded object-cover ring-1 ring-white/10"
+                    className="w-12 h-8 rounded object-cover ring-1 ring-border"
                   />
                   <div>
-                    <div className="font-medium text-sm line-clamp-1 text-white">{postToDelete.title}</div>
-                    <div className="text-xs text-white/50">{postToDelete.category}</div>
+                    <div className="font-medium text-sm line-clamp-1 text-foreground">{postToDelete.title}</div>
+                    <div className="text-xs text-muted-foreground">{postToDelete.category}</div>
                   </div>
                 </div>
               </div>
@@ -833,14 +833,14 @@ export default function BlogPage() {
                   setShowDeleteModal(false)
                   setPostToDelete(null)
                 }}
-                className="cursor-pointer border-white/10 text-white/70 bg-transparent hover:bg-white/10 hover:text-white"
+                className="cursor-pointer border-border text-muted-foreground bg-transparent hover:bg-muted hover:text-foreground"
               >
                 Cancel
               </Button>
               <Button
                 variant="destructive"
                 onClick={handleDeleteConfirm}
-                className="cursor-pointer bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white border-0 shadow-md shadow-red-500/30"
+                className="cursor-pointer bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-foreground border-0 shadow-md shadow-red-500/30"
               >
                 <Trash2 className="h-4 w-4 mr-2" />
                 Delete Post
@@ -851,15 +851,15 @@ export default function BlogPage() {
 
         {/* View Post Details Modal */}
         <Dialog open={!!selectedPost} onOpenChange={() => setSelectedPost(null)}>
-          <DialogContent className="!max-w-6xl !max-h-[80vh] overflow-y-auto bg-[#1a1a1a] border-white/10">
+          <DialogContent className="!max-w-6xl !max-h-[80vh] overflow-y-auto bg-card border-border">
             {selectedPost && (
               <>
                 <DialogHeader>
-                  <DialogTitle className="flex items-center justify-between text-white">
+                  <DialogTitle className="flex items-center justify-between text-foreground">
                     <span className="line-clamp-1">{selectedPost.title}</span>
                     {getStatusBadge(selectedPost.status)}
                   </DialogTitle>
-                  <DialogDescription className="text-white/50">
+                  <DialogDescription className="text-muted-foreground">
                     {selectedPost.category} - URL: /{selectedPost.url}
                   </DialogDescription>
                 </DialogHeader>
@@ -867,44 +867,44 @@ export default function BlogPage() {
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-4">
-                      <div className="p-4 rounded-lg bg-white/5 border border-white/10">
-                        <h3 className="font-semibold mb-3 text-[#ecb41a]">Post Information</h3>
+                      <div className="p-4 rounded-lg bg-muted border border-border">
+                        <h3 className="font-semibold mb-3 text-primary">Post Information</h3>
                         <div className="space-y-3 text-sm">
                           <div>
-                            <strong className="block mb-1 text-white/50">Title:</strong>
-                            <span className="text-white">{selectedPost.title}</span>
+                            <strong className="block mb-1 text-muted-foreground">Title:</strong>
+                            <span className="text-foreground">{selectedPost.title}</span>
                           </div>
                           <div>
-                            <strong className="block mb-1 text-white/50">URL:</strong>
-                            <span className="text-white">{selectedPost.url}</span>
+                            <strong className="block mb-1 text-muted-foreground">URL:</strong>
+                            <span className="text-foreground">{selectedPost.url}</span>
                           </div>
                           <div>
-                            <strong className="block mb-1 text-white/50">Category:</strong>
-                            <span className="text-white">{selectedPost.category}</span>
+                            <strong className="block mb-1 text-muted-foreground">Category:</strong>
+                            <span className="text-foreground">{selectedPost.category}</span>
                           </div>
                           <div>
-                            <strong className="block mb-1 text-white/50">Status:</strong>
+                            <strong className="block mb-1 text-muted-foreground">Status:</strong>
                             {getStatusBadge(selectedPost.status)}
                           </div>
                         </div>
                       </div>
 
-                      <div className="p-4 rounded-lg bg-white/5 border border-white/10">
-                        <h3 className="font-semibold mb-3 text-[#ecb41a]">Dates</h3>
+                      <div className="p-4 rounded-lg bg-muted border border-border">
+                        <h3 className="font-semibold mb-3 text-primary">Dates</h3>
                         <div className="space-y-3 text-sm">
                           <div>
-                            <strong className="block mb-1 text-white/50">Created:</strong>
-                            <span className="text-white">{new Date(selectedPost.createdAt).toLocaleString()}</span>
+                            <strong className="block mb-1 text-muted-foreground">Created:</strong>
+                            <span className="text-foreground">{new Date(selectedPost.createdAt).toLocaleString()}</span>
                           </div>
                           <div>
-                            <strong className="block mb-1 text-white/50">Updated:</strong>
-                            <span className="text-white">
+                            <strong className="block mb-1 text-muted-foreground">Updated:</strong>
+                            <span className="text-foreground">
                               {selectedPost.updatedAt ? new Date(selectedPost.updatedAt).toLocaleString() : "Never"}
                             </span>
                           </div>
                           <div>
-                            <strong className="block mb-1 text-white/50">Published:</strong>
-                            <span className="text-white">
+                            <strong className="block mb-1 text-muted-foreground">Published:</strong>
+                            <span className="text-foreground">
                               {selectedPost.publishedAt
                                 ? new Date(selectedPost.publishedAt).toLocaleString()
                                 : "Not published"}
@@ -915,25 +915,25 @@ export default function BlogPage() {
                     </div>
 
                     <div className="space-y-4">
-                      <div className="p-4 rounded-lg bg-white/5 border border-white/10">
-                        <h3 className="font-semibold mb-3 text-[#ecb41a]">Featured Image</h3>
+                      <div className="p-4 rounded-lg bg-muted border border-border">
+                        <h3 className="font-semibold mb-3 text-primary">Featured Image</h3>
                         <img
                           src={selectedPost.imageUrl || "/placeholder.svg"}
                           alt={selectedPost.title}
-                          className="w-full h-48 object-cover rounded-lg border border-white/10"
+                          className="w-full h-48 object-cover rounded-lg border border-border"
                         />
                       </div>
 
-                      <div className="p-4 rounded-lg bg-white/5 border border-white/10">
-                        <h3 className="font-semibold mb-3 text-[#ecb41a]">Excerpt</h3>
-                        <p className="text-sm text-white/70 leading-relaxed">{selectedPost.excerpt}</p>
+                      <div className="p-4 rounded-lg bg-muted border border-border">
+                        <h3 className="font-semibold mb-3 text-primary">Excerpt</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{selectedPost.excerpt}</p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="p-4 rounded-lg bg-white/5 border border-white/10">
-                    <h3 className="font-semibold mb-3 text-[#ecb41a]">Content Preview</h3>
-                    <div className="p-4 bg-[#1a1a1a]/50 rounded-lg max-h-96 overflow-y-auto border border-white/10">
+                  <div className="p-4 rounded-lg bg-muted border border-border">
+                    <h3 className="font-semibold mb-3 text-primary">Content Preview</h3>
+                    <div className="p-4 bg-card/50 rounded-lg max-h-96 overflow-y-auto border border-border">
                       <div 
                         className="admin-preview-prose"
                         dangerouslySetInnerHTML={{ __html: parseContentForPreview(selectedPost.content) }}
@@ -941,11 +941,11 @@ export default function BlogPage() {
                     </div>
                   </div>
 
-                  <div className="flex justify-end space-x-2 pt-4 border-t border-white/10">
+                  <div className="flex justify-end space-x-2 pt-4 border-t border-border">
                     <Button
                       variant="outline"
                       onClick={() => setSelectedPost(null)}
-                      className="cursor-pointer border-white/10 text-white/70 bg-transparent hover:bg-white/10 hover:text-white"
+                      className="cursor-pointer border-border text-muted-foreground bg-transparent hover:bg-muted hover:text-foreground"
                     >
                       Close
                     </Button>
@@ -954,7 +954,7 @@ export default function BlogPage() {
                         setSelectedPost(null)
                         handleEditPost(selectedPost)
                       }}
-                      className="bg-gradient-to-r from-[#ecb41a] to-[#f5d060] hover:from-[#005a9a] hover:to-[#ecb41a] text-white shadow-lg shadow-[#ecb41a]/30"
+                      className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-foreground shadow-lg shadow-primary/30"
                     >
                       <Edit className="h-4 w-4 mr-2" />
                       Edit Post
@@ -978,10 +978,10 @@ export default function BlogPage() {
             }
           }}
         >
-          <DialogContent className="!max-w-6xl !max-h-[90vh] overflow-y-auto bg-[#1a1a1a] border-white/10">
+          <DialogContent className="!max-w-6xl !max-h-[90vh] overflow-y-auto bg-card border-border">
             <DialogHeader>
-              <DialogTitle className="text-white">{editingPost ? "Edit Blog Post" : "Create New Blog Post"}</DialogTitle>
-              <DialogDescription className="text-white/50">
+              <DialogTitle className="text-foreground">{editingPost ? "Edit Blog Post" : "Create New Blog Post"}</DialogTitle>
+              <DialogDescription className="text-muted-foreground">
                 {editingPost
                   ? "Update your blog post with the latest information"
                   : "Create a comprehensive blog post for your website"}
@@ -992,7 +992,7 @@ export default function BlogPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-6">
                   <div>
-                    <Label htmlFor="title" className="block mb-2 text-white/70">
+                    <Label htmlFor="title" className="block mb-2 text-muted-foreground">
                       Title *
                     </Label>
                     <Input
@@ -1001,12 +1001,12 @@ export default function BlogPage() {
                       onChange={(e) => handleTitleChange(e.target.value)}
                       placeholder="Enter post title..."
                       required
-                      className="bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-[#ecb41a]/50"
+                      className="bg-muted border-border text-foreground placeholder:text-muted-foreground focus:border-primary/50"
                     />
                   </div>
 
                   <div>
-                    <Label htmlFor="url" className="block mb-2 text-white/70">
+                    <Label htmlFor="url" className="block mb-2 text-muted-foreground">
                       URL *
                     </Label>
                     <Input
@@ -1015,50 +1015,50 @@ export default function BlogPage() {
                       onChange={(e) => setFormData({ ...formData, url: e.target.value })}
                       placeholder="post-url-slug"
                       required
-                      className="bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-[#ecb41a]/50"
+                      className="bg-muted border-border text-foreground placeholder:text-muted-foreground focus:border-primary/50"
                     />
-                    <p className="text-xs text-white/40 mt-1">
+                    <p className="text-xs text-muted-foreground mt-1">
                       Auto-generated from title, but you can customize it
                     </p>
                   </div>
 
                   <div>
-                    <Label htmlFor="category" className="block mb-2 text-white/70">
+                    <Label htmlFor="category" className="block mb-2 text-muted-foreground">
                       Category *
                     </Label>
                     <Select
                       value={formData.category}
                       onValueChange={(value) => setFormData({ ...formData, category: value })}
                     >
-                      <SelectTrigger className="bg-white/5 border-white/10 text-white">
+                      <SelectTrigger className="bg-muted border-border text-foreground">
                         <SelectValue placeholder="Select category" />
                       </SelectTrigger>
-                      <SelectContent className="bg-[#1a1a1a] border-white/10">
-                        <SelectItem value="SEO" className="text-white/70 focus:bg-white/10 focus:text-white">SEO</SelectItem>
-                        <SelectItem value="Marketing" className="text-white/70 focus:bg-white/10 focus:text-white">Marketing</SelectItem>
-                        <SelectItem value="Web Development" className="text-white/70 focus:bg-white/10 focus:text-white">Web Development</SelectItem>
-                        <SelectItem value="Business" className="text-white/70 focus:bg-white/10 focus:text-white">Business</SelectItem>
-                        <SelectItem value="Content Writing" className="text-white/70 focus:bg-white/10 focus:text-white">Content Writing</SelectItem>
-                        <SelectItem value="Graphic Design" className="text-white/70 focus:bg-white/10 focus:text-white">Graphic Design</SelectItem>
-                        <SelectItem value="Others" className="text-white/70 focus:bg-white/10 focus:text-white">Others</SelectItem>
+                      <SelectContent className="bg-card border-border">
+                        <SelectItem value="SEO" className="text-muted-foreground focus:bg-muted focus:text-foreground">SEO</SelectItem>
+                        <SelectItem value="Marketing" className="text-muted-foreground focus:bg-muted focus:text-foreground">Marketing</SelectItem>
+                        <SelectItem value="Web Development" className="text-muted-foreground focus:bg-muted focus:text-foreground">Web Development</SelectItem>
+                        <SelectItem value="Business" className="text-muted-foreground focus:bg-muted focus:text-foreground">Business</SelectItem>
+                        <SelectItem value="Content Writing" className="text-muted-foreground focus:bg-muted focus:text-foreground">Content Writing</SelectItem>
+                        <SelectItem value="Graphic Design" className="text-muted-foreground focus:bg-muted focus:text-foreground">Graphic Design</SelectItem>
+                        <SelectItem value="Others" className="text-muted-foreground focus:bg-muted focus:text-foreground">Others</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
 
                   <div>
-                    <Label htmlFor="status" className="block mb-2 text-white/70">
+                    <Label htmlFor="status" className="block mb-2 text-muted-foreground">
                       Status
                     </Label>
                     <Select
                       value={formData.status}
                       onValueChange={(value: "draft" | "published") => setFormData({ ...formData, status: value })}
                     >
-                      <SelectTrigger className="bg-white/5 border-white/10 text-white">
+                      <SelectTrigger className="bg-muted border-border text-foreground">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent className="bg-[#1a1a1a] border-white/10">
-                        <SelectItem value="draft" className="text-white/70 focus:bg-white/10 focus:text-white">Draft</SelectItem>
-                        <SelectItem value="published" className="text-white/70 focus:bg-white/10 focus:text-white">Published</SelectItem>
+                      <SelectContent className="bg-card border-border">
+                        <SelectItem value="draft" className="text-muted-foreground focus:bg-muted focus:text-foreground">Draft</SelectItem>
+                        <SelectItem value="published" className="text-muted-foreground focus:bg-muted focus:text-foreground">Published</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -1066,7 +1066,7 @@ export default function BlogPage() {
 
                 <div className="space-y-6">
                   <div>
-                    <Label htmlFor="imageUrl" className="block mb-2 text-white/70">
+                    <Label htmlFor="imageUrl" className="block mb-2 text-muted-foreground">
                       Featured Image *
                     </Label>
                     <div className="space-y-2">
@@ -1076,7 +1076,7 @@ export default function BlogPage() {
                         onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
                         placeholder="Image URL or upload below..."
                         required
-                        className="bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-[#ecb41a]/50"
+                        className="bg-muted border-border text-foreground placeholder:text-muted-foreground focus:border-primary/50"
                       />
                       <div className="flex items-center space-x-2">
                         <input
@@ -1100,7 +1100,7 @@ export default function BlogPage() {
                           size="sm"
                           onClick={() => document.getElementById("image-upload")?.click()}
                           disabled={imageUploading}
-                          className="border-white/10 text-white/70 bg-transparent hover:bg-[#ecb41a]/20 hover:text-[#ecb41a] hover:border-[#ecb41a]/30"
+                          className="border-border text-muted-foreground bg-transparent hover:bg-primary/20 hover:text-primary hover:border-primary/30"
                         >
                           <Upload className="h-4 w-4 mr-2" />
                           {imageUploading ? "Uploading..." : "Upload Image"}
@@ -1110,7 +1110,7 @@ export default function BlogPage() {
                         <img
                           src={formData.imageUrl || "/placeholder.svg"}
                           alt="Preview"
-                          className="w-full h-48 object-cover rounded-lg border border-white/10"
+                          className="w-full h-48 object-cover rounded-lg border border-border"
                         />
                       )}
                     </div>
@@ -1119,7 +1119,7 @@ export default function BlogPage() {
               </div>
 
               <div>
-                <Label htmlFor="excerpt" className="block mb-2 text-white/70">
+                <Label htmlFor="excerpt" className="block mb-2 text-muted-foreground">
                   Excerpt *
                 </Label>
                 <Textarea
@@ -1129,9 +1129,9 @@ export default function BlogPage() {
                   placeholder="Brief description of the post..."
                   rows={3}
                   required
-                  className="bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-[#ecb41a]/50"
+                  className="bg-muted border-border text-foreground placeholder:text-muted-foreground focus:border-primary/50"
                 />
-                <p className="text-xs text-white/40 mt-1">This will be used as the meta description for SEO</p>
+                <p className="text-xs text-muted-foreground mt-1">This will be used as the meta description for SEO</p>
               </div>
 
               <div>
@@ -1146,7 +1146,7 @@ export default function BlogPage() {
                 />
               </div>
 
-              <div className="flex justify-end space-x-2 pt-4 border-t border-white/10">
+              <div className="flex justify-end space-x-2 pt-4 border-t border-border">
                 <Button
                   type="button"
                   variant="outline"
@@ -1156,14 +1156,14 @@ export default function BlogPage() {
                     setEditingPost(null)
                     resetForm()
                   }}
-                  className="border-white/10 text-white/70 bg-transparent hover:bg-white/10 hover:text-white"
+                  className="border-border text-muted-foreground bg-transparent hover:bg-muted hover:text-foreground"
                 >
                   <X className="h-4 w-4 mr-2" />
                   Cancel
                 </Button>
                 <Button
                   type="submit"
-                  className="bg-gradient-to-r from-[#ecb41a] to-[#f5d060] hover:from-[#005a9a] hover:to-[#ecb41a] text-white shadow-lg shadow-[#ecb41a]/30"
+                  className="bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-primary text-foreground shadow-lg shadow-primary/30"
                 >
                   <Save className="h-4 w-4 mr-2" />
                   {editingPost ? "Update Post" : "Create Post"}

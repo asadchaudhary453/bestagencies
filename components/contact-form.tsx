@@ -30,7 +30,9 @@ function validateField(field: keyof Fields, value: string): string {
         ? ''
         : 'That doesn\u2019t look like a valid email address.'
     case 'subject':
-      return value ? '' : 'Please choose a topic.'
+      return value.trim().length >= 3
+        ? ''
+        : 'Please enter a subject (at least 3 characters).'
     case 'message':
       return value.trim().length >= 20
         ? ''
@@ -53,6 +55,8 @@ function FieldError({ id, message }: { id: string; message: string }) {
 
 export function ContactForm() {
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [submitError, setSubmitError] = useState('')
   const [values, setValues] = useState<Fields>({
     name: '',
     email: '',
@@ -78,7 +82,7 @@ export function ContactForm() {
     setErrors((e) => ({ ...e, [field]: validateField(field, values[field]) }))
   }
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const nextErrors: Partial<Fields> = {}
     for (const field of Object.keys(values) as (keyof Fields)[]) {
@@ -88,7 +92,30 @@ export function ContactForm() {
     setTouched({ name: true, email: true, subject: true, message: true })
     setErrors(nextErrors)
     if (Object.keys(nextErrors).length > 0) return
-    setSent(true)
+
+    setSending(true)
+    setSubmitError('')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      })
+      if (!res.ok) {
+        const data = await res.json().catch(() => null)
+        setSubmitError(
+          data?.error ?? 'Failed to send your message. Please try again later.',
+        )
+        return
+      }
+      setSent(true)
+    } catch {
+      setSubmitError(
+        'Network error. Please check your connection and try again.',
+      )
+    } finally {
+      setSending(false)
+    }
   }
 
   if (sent) {
@@ -156,26 +183,20 @@ export function ContactForm() {
         <label htmlFor="subject" className="text-sm font-medium">
           Subject
         </label>
-        <select
+        <input
           id="subject"
           name="subject"
+          type="text"
           required
+          maxLength={150}
           value={values.subject}
           onChange={(e) => setValue('subject', e.target.value)}
           onBlur={() => onBlur('subject')}
           aria-invalid={!!errors.subject}
           aria-describedby={errors.subject ? 'subject-error' : undefined}
           className={cn(inputClass, errors.subject && errorInputClass)}
-        >
-          <option value="" disabled>
-            Choose a topic
-          </option>
-          <option>Suggest an agency</option>
-          <option>Editorial enquiry</option>
-          <option>Advertising &amp; partnerships</option>
-          <option>Correction or feedback</option>
-          <option>Something else</option>
-        </select>
+          placeholder="What is your message about?"
+        />
         <FieldError id="subject-error" message={errors.subject ?? ''} />
       </div>
       <div className="flex flex-col gap-1.5">
@@ -197,11 +218,21 @@ export function ContactForm() {
         />
         <FieldError id="message-error" message={errors.message ?? ''} />
       </div>
+      {submitError && (
+        <p
+          role="alert"
+          className="flex items-center gap-1.5 rounded-lg border border-destructive/30 bg-destructive/5 px-4 py-3 text-sm font-medium text-destructive"
+        >
+          <AlertCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
+          {submitError}
+        </p>
+      )}
       <button
         type="submit"
-        className="inline-flex w-fit items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+        disabled={sending}
+        className="inline-flex w-fit items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        Send message
+        {sending ? 'Sending\u2026' : 'Send message'}
         <Send className="h-4 w-4" aria-hidden="true" />
       </button>
     </form>

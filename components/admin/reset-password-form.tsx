@@ -99,15 +99,15 @@ export function ResetPasswordForm() {
 
   if (!token) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0a0a0a] p-4">
+      <div className="min-h-screen flex items-center justify-center bg-background p-4">
         <div className="text-center">
-          <XCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
-          <h1 className="text-2xl font-bold text-white mb-2">Invalid Reset Link</h1>
-          <p className="text-white/50 mb-6">
+          <XCircle className="w-16 h-16 text-destructive mx-auto mb-4" />
+          <h1 className="text-2xl font-bold text-foreground mb-2">Invalid Reset Link</h1>
+          <p className="text-muted-foreground mb-6">
             This password reset link is invalid or has expired.
           </p>
           <Link href="/admin/login">
-            <Button className="bg-[#ecb41a] hover:bg-[#f5d060] text-[#0a0a0a] font-semibold">
+            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
               Back to Login
             </Button>
           </Link>
@@ -118,21 +118,21 @@ export function ResetPasswordForm() {
 
   if (success) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0a0a0a] p-4">
+      <div className="min-h-screen flex items-center justify-center bg-background p-4">
         <div className="text-center">
-          <CheckCircle2 className="w-16 h-16 text-[#ecb41a] mx-auto mb-4" />
-          <h1 className="text-2xl font-bold text-white mb-2">Password Reset Successful</h1>
-          <p className="text-white/50 mb-6">Redirecting you to login...</p>
+          <CheckCircle2 className="w-16 h-16 text-primary mx-auto mb-4" />
+          <h1 className="text-2xl font-bold text-foreground mb-2">Password Reset Successful</h1>
+          <p className="text-muted-foreground mb-6">Redirecting you to login...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0a0a0a] overflow-hidden relative">
+    <div className="min-h-screen flex flex-col bg-background overflow-hidden relative">
       {/* Ambient gold glow */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#ecb41a]/10 rounded-full blur-[120px] animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-[#ecb41a]/5 rounded-full blur-[100px] animate-pulse [animation-delay:1s]" />
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] animate-pulse [animation-delay:1s]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#0a0a0a_70%)]" />
 
       {/* Floating particles */}
@@ -140,7 +140,7 @@ export function ResetPasswordForm() {
         {particles.map((particle, i) => (
           <div
             key={i}
-            className="absolute rounded-full bg-[#ecb41a]/40 animate-float"
+            className="absolute rounded-full bg-primary/40 animate-float"
             style={{
               left: `${particle.left}%`,
               top: `${particle.top}%`,
@@ -157,7 +157,7 @@ export function ResetPasswordForm() {
       <div className="relative z-10 p-4">
         <Link
           href="/admin/login"
-          className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to login
@@ -172,19 +172,19 @@ export function ResetPasswordForm() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
-          <div className="bg-white/[0.03] backdrop-blur-xl rounded-2xl border border-white/10 p-8 shadow-2xl">
+          <div className="bg-muted/40 backdrop-blur-xl rounded-2xl border border-border p-8 shadow-2xl">
             {/* Header */}
             <div className="flex flex-col items-center text-center mb-8">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#ecb41a] to-[#b8860b] rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-[#ecb41a]/20">
-                <KeyRound className="h-8 w-8 text-[#0a0a0a]" />
+              <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-primary/20">
+                <KeyRound className="h-8 w-8 text-primary-foreground" />
               </div>
-              <h1 className="text-2xl font-bold text-white">Create New Password</h1>
-              <p className="text-white/50 mt-2">Enter your new password below</p>
+              <h1 className="text-2xl font-bold text-foreground">Create New Password</h1>
+              <p className="text-muted-foreground mt-2">Enter your new password below</p>
             </div>
 
             {error && (
               <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20">
-                <p className="text-red-400 text-sm text-center">{error}</p>
+                <p className="text-destructive text-sm text-center">{error}</p>
               </div>
             )}
 
@@ -195,14 +195,14 @@ export function ResetPasswordForm() {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-white/70">New Password</FormLabel>
+                      <FormLabel className="text-muted-foreground">New Password</FormLabel>
                       <FormControl>
                         <div className="relative">
                           <Input
                             type={showPassword ? "text" : "password"}
                             placeholder="Enter new password"
                             disabled={isLoading}
-                            className="bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-[#ecb41a] focus:ring-[#ecb41a]/20 h-12 pr-12"
+                            className="bg-muted border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20 h-12 pr-12"
                             {...field}
                           />
                           <Button
@@ -214,14 +214,14 @@ export function ResetPasswordForm() {
                             tabIndex={-1}
                           >
                             {showPassword ? (
-                              <EyeOff className="h-4 w-4 text-white/50" />
+                              <EyeOff className="h-4 w-4 text-muted-foreground" />
                             ) : (
-                              <Eye className="h-4 w-4 text-white/50" />
+                              <Eye className="h-4 w-4 text-muted-foreground" />
                             )}
                           </Button>
                         </div>
                       </FormControl>
-                      <FormMessage className="text-red-400" />
+                      <FormMessage className="text-destructive" />
                     </FormItem>
                   )}
                 />
@@ -231,14 +231,14 @@ export function ResetPasswordForm() {
                   name="confirmPassword"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-white/70">Confirm Password</FormLabel>
+                      <FormLabel className="text-muted-foreground">Confirm Password</FormLabel>
                       <FormControl>
                         <div className="relative">
                           <Input
                             type={showConfirmPassword ? "text" : "password"}
                             placeholder="Confirm new password"
                             disabled={isLoading}
-                            className="bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-[#ecb41a] focus:ring-[#ecb41a]/20 h-12 pr-12"
+                            className="bg-muted border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20 h-12 pr-12"
                             {...field}
                           />
                           <Button
@@ -250,14 +250,14 @@ export function ResetPasswordForm() {
                             tabIndex={-1}
                           >
                             {showConfirmPassword ? (
-                              <EyeOff className="h-4 w-4 text-white/50" />
+                              <EyeOff className="h-4 w-4 text-muted-foreground" />
                             ) : (
-                              <Eye className="h-4 w-4 text-white/50" />
+                              <Eye className="h-4 w-4 text-muted-foreground" />
                             )}
                           </Button>
                         </div>
                       </FormControl>
-                      <FormMessage className="text-red-400" />
+                      <FormMessage className="text-destructive" />
                     </FormItem>
                   )}
                 />
@@ -265,7 +265,7 @@ export function ResetPasswordForm() {
                 <Button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full h-12 bg-[#ecb41a] hover:bg-[#f5d060] text-[#0a0a0a] font-semibold rounded-xl shadow-lg shadow-[#ecb41a]/25 transition-all duration-300"
+                  className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-xl shadow-lg shadow-primary/25 transition-all duration-300"
                 >
                   {isLoading ? (
                     <>
