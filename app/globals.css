@@ -1,0 +1,395 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-heading: var(--font-fraunces), Georgia, 'Times New Roman', serif;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-paper: var(--paper);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Off-White base #F7F9FC */
+  --background: oklch(0.98 0.004 247);
+  /* Charcoal #1E1E1E */
+  --foreground: oklch(0.22 0 0);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0 0);
+
+  /* Brand Blue #3B82D6 */
+  --primary: oklch(0.62 0.146 254);
+  --primary-foreground: oklch(0.99 0 0);
+
+  --secondary: oklch(0.96 0.006 247);
+  --secondary-foreground: oklch(0.22 0 0);
+
+  --muted: oklch(0.96 0.006 247);
+  --muted-foreground: oklch(0.48 0.01 250);
+
+  --accent: oklch(0.94 0.02 252);
+  --accent-foreground: oklch(0.4 0.12 254);
+
+  --destructive: oklch(0.577 0.245 27.325);
+
+  --border: oklch(0.9 0.008 247);
+  --input: oklch(0.9 0.008 247);
+  --ring: oklch(0.62 0.146 254);
+
+  /* Deep editorial ink for dark feature bands */
+  --ink: oklch(0.2 0.03 256);
+  --ink-foreground: oklch(0.97 0.005 247);
+  /* Warm paper tone for alternating sections */
+  --paper: oklch(0.975 0.008 90);
+
+  --chart-1: oklch(0.62 0.146 254);
+  --chart-2: oklch(0.7 0.12 230);
+  --chart-3: oklch(0.55 0.13 270);
+  --chart-4: oklch(0.75 0.1 210);
+  --chart-5: oklch(0.45 0.13 260);
+
+  --sidebar: oklch(0.99 0.002 247);
+  --sidebar-foreground: oklch(0.22 0 0);
+  --sidebar-primary: oklch(0.62 0.146 254);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.94 0.02 252);
+  --sidebar-accent-foreground: oklch(0.4 0.12 254);
+  --sidebar-border: oklch(0.9 0.008 247);
+  --sidebar-ring: oklch(0.62 0.146 254);
+}
+
+.dark {
+  --background: oklch(0.18 0 0);
+  --foreground: oklch(0.97 0 0);
+  --card: oklch(0.22 0 0);
+  --card-foreground: oklch(0.97 0 0);
+  --popover: oklch(0.22 0 0);
+  --popover-foreground: oklch(0.97 0 0);
+  --primary: oklch(0.66 0.15 254);
+  --primary-foreground: oklch(0.15 0 0);
+  --secondary: oklch(0.27 0 0);
+  --secondary-foreground: oklch(0.97 0 0);
+  --muted: oklch(0.27 0 0);
+  --muted-foreground: oklch(0.7 0 0);
+  --accent: oklch(0.3 0.04 254);
+  --accent-foreground: oklch(0.85 0.1 254);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.66 0.15 254);
+  --ink: oklch(0.14 0.02 256);
+  --ink-foreground: oklch(0.97 0.005 247);
+  --paper: oklch(0.22 0 0);
+  --chart-1: oklch(0.66 0.15 254);
+  --chart-2: oklch(0.7 0.12 230);
+  --chart-3: oklch(0.6 0.13 270);
+  --chart-4: oklch(0.75 0.1 210);
+  --chart-5: oklch(0.5 0.13 260);
+  --sidebar: oklch(0.2 0 0);
+  --sidebar-foreground: oklch(0.97 0 0);
+  --sidebar-primary: oklch(0.66 0.15 254);
+  --sidebar-primary-foreground: oklch(0.15 0 0);
+  --sidebar-accent: oklch(0.3 0.04 254);
+  --sidebar-accent-foreground: oklch(0.85 0.1 254);
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: oklch(0.66 0.15 254);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: 'ss01', 'cv01';
+    /* Guard against transient horizontal overflow from reveal transforms */
+    overflow-x: clip;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+    overflow-x: clip;
+    /* Avoid iOS Safari text auto-inflation on rotate */
+    -webkit-text-size-adjust: 100%;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif;
+    letter-spacing: -0.015em;
+  }
+  ::selection {
+    background: color-mix(in oklch, var(--primary) 24%, transparent);
+    color: var(--foreground);
+  }
+  /* Tailwind v4 preflight resets buttons to cursor:default — restore pointer
+     for all interactive elements where appropriate. */
+  button:not(:disabled),
+  [role='button']:not([aria-disabled='true']),
+  [role='tab'],
+  a[href],
+  label[for],
+  summary,
+  select {
+    cursor: pointer;
+  }
+  button:disabled,
+  [aria-disabled='true'] {
+    cursor: not-allowed;
+  }
+  /* Prevent iOS Safari from auto-zooming when focusing form controls
+     (any control under 16px triggers it). Keeps the visual size small via
+     the design classes on larger screens. */
+  @media (max-width: 640px) {
+    input,
+    select,
+    textarea {
+      font-size: 16px;
+    }
+  }
+}
+
+@layer components {
+  /* Small uppercase label used above section headings */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply h-px w-6 bg-primary/50;
+  }
+  .eyebrow-center::before {
+    display: none;
+  }
+
+  /* Editorial section heading scale */
+  .section-title {
+    @apply font-heading text-3xl font-bold leading-[1.05] tracking-tight text-balance sm:text-4xl;
+  }
+
+  /* Hover lift used on cards */
+  .card-lift {
+    @apply transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_18px_40px_-18px_rgba(30,41,59,0.35)];
+  }
+
+  /* Animated underline link */
+  .link-underline {
+    @apply relative;
+  }
+  .link-underline::after {
+    content: '';
+    @apply absolute -bottom-0.5 left-0 h-px w-full origin-right scale-x-0 bg-current transition-transform duration-300 ease-out;
+  }
+  .link-underline:hover::after {
+    @apply origin-left scale-x-100;
+  }
+
+  /* Lightweight loading skeleton — animates opacity only (GPU-friendly,
+     zero layout shift). Used by loading.tsx route fallbacks. */
+  .skeleton {
+    @apply rounded-md bg-muted;
+    animation: skeleton-pulse 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Entrance animations */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.animate-fade-in {
+  animation: fade-in 0.9s ease-out both;
+}
+.delay-100 {
+  animation-delay: 0.1s;
+}
+.delay-200 {
+  animation-delay: 0.2s;
+}
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+/* Scroll reveal — GPU-only (opacity + transform), zero layout shift.
+   Hidden start state is applied ONLY after JS adds `.reveal-ready`, so
+   content is never invisible without JS and there is no CLS. */
+[data-reveal] {
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-ready [data-reveal]:not(.is-revealed) {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+}
+.reveal-ready [data-reveal][data-reveal='fade']:not(.is-revealed) {
+  transform: none;
+}
+.reveal-ready [data-reveal][data-reveal='left']:not(.is-revealed) {
+  transform: translate3d(-20px, 0, 0);
+}
+.reveal-ready [data-reveal][data-reveal='right']:not(.is-revealed) {
+  transform: translate3d(20px, 0, 0);
+}
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+[data-reveal-delay='1'] {
+  transition-delay: 0.08s;
+}
+[data-reveal-delay='2'] {
+  transition-delay: 0.16s;
+}
+[data-reveal-delay='3'] {
+  transition-delay: 0.24s;
+}
+[data-reveal-delay='4'] {
+  transition-delay: 0.32s;
+}
+
+/* Subtle, GPU-friendly image zoom for media cards on hover/focus */
+.media-zoom {
+  overflow: hidden;
+}
+.media-zoom img {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+@media (hover: hover) {
+  .media-zoom:hover img,
+  .media-zoom:focus-within img {
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-fade-in {
+    animation: none;
+  }
+  [data-reveal] {
+    transition: none;
+  }
+  .reveal-ready [data-reveal]:not(.is-revealed) {
+    opacity: 1;
+    transform: none;
+  }
+  .media-zoom img {
+    transition: none;
+  }
+  .skeleton {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Rich article prose styles */
+.prose-article {
+  @apply text-[1.0625rem] leading-relaxed text-foreground/90;
+}
+.prose-article p {
+  @apply my-5;
+}
+.prose-article h2 {
+  @apply mt-12 mb-4 scroll-mt-28 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl;
+}
+.prose-article h3 {
+  @apply mt-8 mb-3 scroll-mt-28 text-xl font-semibold tracking-tight text-foreground;
+}
+.prose-article ul {
+  @apply my-5 list-disc space-y-2 pl-6;
+}
+.prose-article ol {
+  @apply my-5 list-decimal space-y-2 pl-6;
+}
+.prose-article a {
+  @apply font-medium text-primary underline underline-offset-4 hover:opacity-80;
+}
+.prose-article blockquote {
+  @apply my-6 border-l-4 border-primary bg-accent/50 py-2 pl-5 pr-4 font-serif text-lg italic text-foreground;
+}
+.prose-article strong {
+  @apply font-semibold text-foreground;
+}
