@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { Clock, Calendar, ArrowLeft, RefreshCw } from 'lucide-react'
+import { Clock, Calendar, ArrowLeft } from 'lucide-react'
 import { getAuthor, getCategory, formatDate } from '@/lib/content'
 import {
   getAllPosts,
@@ -19,6 +19,7 @@ import {
 } from '@/components/seo/json-ld'
 import { Breadcrumbs } from '@/components/layout/breadcrumbs'
 import { ArticleBody } from '@/components/article/article-body'
+import { ArticleHeroImage } from '@/components/article/article-hero-image'
 import {
   TableOfContents,
   type TocItem,
@@ -62,13 +63,15 @@ export async function generateMetadata({
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt,
       authors: author ? [author.name] : undefined,
-      images: [{ url: post.image, alt: post.imageAlt }],
+      images: post.image
+        ? [{ url: post.image, alt: post.imageAlt }]
+        : undefined,
     },
     twitter: {
-      card: 'summary_large_image',
+      card: post.image ? 'summary_large_image' : 'summary',
       title: post.title,
       description: post.excerpt,
-      images: [post.image],
+      images: post.image ? [post.image] : undefined,
     },
   }
 }
@@ -172,35 +175,12 @@ export default async function PostPage({
               <Clock className="h-4 w-4" aria-hidden="true" />
               {post.readingTime} min read
             </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-              <RefreshCw className="h-3 w-3" aria-hidden="true" />
-              Updated{' '}
-              <time dateTime={post.updatedAt}>
-                {formatDate(post.updatedAt)}
-              </time>
-            </span>
           </div>
         </div>
       </header>
 
-      {/* Hero image */}
-      <div className="mx-auto max-w-5xl px-4 sm:px-6">
-        <figure className="sm:-mt-10">
-          <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-border shadow-[0_30px_60px_-30px_rgba(30,41,59,0.45)]">
-            <Image
-              src={post.image || '/placeholder.svg'}
-              alt={post.imageAlt}
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 1024px"
-              className="object-cover"
-            />
-          </div>
-          <figcaption className="mt-3 text-center text-xs text-muted-foreground">
-            {post.imageAlt}
-          </figcaption>
-        </figure>
-      </div>
+      {/* Hero image — hidden entirely when missing or broken */}
+      <ArticleHeroImage src={post.image} alt={post.imageAlt} />
 
       {/* Body + sidebar */}
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1fr_260px] lg:py-16">

@@ -8,6 +8,7 @@ import { CategoryIcon } from '@/components/brand/category-icon'
 import Link from 'next/link'
 import { Sparkles } from 'lucide-react'
 import { PostsGrid } from '@/components/posts/posts-grid'
+import { Pagination } from '@/components/posts/pagination'
 import { AdvertisementCard } from '@/components/ads/advertisement-card'
 import { breadcrumbJsonLd } from '@/components/layout/breadcrumbs'
 import { JsonLd, collectionPageJsonLd } from '@/components/seo/json-ld'
@@ -40,16 +41,29 @@ export async function generateMetadata({
   }
 }
 
+const POSTS_PER_PAGE = 9
+
 export default async function CategoryPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ slug: string }>
+  searchParams: Promise<{ page?: string }>
 }) {
-  const { slug } = await params
+  const [{ slug }, { page }] = await Promise.all([params, searchParams])
   const category = getCategory(slug)
   if (!category) notFound()
 
-  const posts = await getPostsByCategory(slug)
+  const allPosts = await getPostsByCategory(slug)
+  const totalPages = Math.max(1, Math.ceil(allPosts.length / POSTS_PER_PAGE))
+  const currentPage = Math.min(
+    Math.max(1, Number.parseInt(page ?? '1', 10) || 1),
+    totalPages,
+  )
+  const posts = allPosts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE,
+  )
   const crumbs = [
     { label: 'Home', href: '/' },
     { label: 'Categories', href: '/categories' },
@@ -64,7 +78,7 @@ export default async function CategoryPage({
           name: category.title,
           description: category.description,
           url: `${SITE.url}/category/${category.slug}`,
-          posts,
+          posts: allPosts,
         })}
       />
       {/* Category hero */}
@@ -95,10 +109,20 @@ export default async function CategoryPage({
           <>
             <div className="mb-8 flex items-center justify-between">
               <h2 className="font-heading text-xl font-semibold">
-                {posts.length} {posts.length === 1 ? 'guide' : 'guides'}
+                {allPosts.length} {allPosts.length === 1 ? 'guide' : 'guides'}
               </h2>
+              {totalPages > 1 && (
+                <p className="text-sm text-muted-foreground">
+                  Page {currentPage} of {totalPages}
+                </p>
+              )}
             </div>
             <PostsGrid posts={posts} />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              basePath={`/category/${category.slug}`}
+            />
           </>
         ) : (
           <div className="mx-auto flex max-w-md flex-col items-center gap-4 rounded-2xl border border-dashed border-border bg-card px-6 py-14 text-center">

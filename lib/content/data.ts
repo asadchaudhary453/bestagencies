@@ -124,6 +124,14 @@ function toIso(d: Date | undefined, fallback: Date): string {
   return (d ?? fallback).toISOString()
 }
 
+/** Normalize the stored image URL: only keep non-empty http(s) URLs or site-relative paths. */
+function cleanImageUrl(url: string | undefined | null): string {
+  const trimmed = (url ?? '').trim()
+  if (!trimmed) return ''
+  if (/^https?:\/\//.test(trimmed) || trimmed.startsWith('/')) return trimmed
+  return ''
+}
+
 function mapSummary(doc: BlogDoc): PostSummary {
   return {
     slug: doc.url,
@@ -134,7 +142,7 @@ function mapSummary(doc: BlogDoc): PostSummary {
     publishedAt: toIso(doc.publishedAt, doc.createdAt),
     updatedAt: toIso(doc.updatedAt, doc.createdAt),
     readingTime: readingTimeOf(doc.content ?? ''),
-    image: doc.imageUrl,
+    image: cleanImageUrl(doc.imageUrl),
     imageAlt: doc.title,
     tags: [doc.category],
   }
