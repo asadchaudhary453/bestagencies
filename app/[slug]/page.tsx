@@ -157,7 +157,7 @@ export default async function PostPage({
                   alt={author.name}
                   width={28}
                   height={28}
-                  className="h-7 w-7 rounded-full object-cover"
+                  className="h-6 w-6 object-contain"
                 />
                 <span className="font-semibold text-foreground">
                   {author.name}
@@ -193,7 +193,7 @@ export default async function PostPage({
                   alt={author.name}
                   width={44}
                   height={44}
-                  className="h-11 w-11 rounded-full object-cover"
+                  className="h-10 w-10 object-contain"
                 />
                 <div>
                   <p className="text-sm font-semibold text-foreground">

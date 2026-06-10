@@ -9,7 +9,7 @@ export function AuthorBio({ author }: { author: Author }) {
         alt={author.name}
         width={64}
         height={64}
-        className="h-16 w-16 shrink-0 rounded-full object-cover ring-2 ring-background"
+        className="h-14 w-14 shrink-0 object-contain"
       />
       <div>
         <p className="text-xs font-semibold uppercase tracking-wide text-primary">
