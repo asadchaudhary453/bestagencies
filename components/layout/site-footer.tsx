@@ -11,7 +11,10 @@ const company = [
   { href: '/categories', label: 'All Categories' },
 ]
 
-const legal = [{ href: '/terms', label: 'Terms & Conditions' }]
+const legal = [
+  { href: '/terms', label: 'Terms & Conditions' },
+  { href: '/site-map', label: 'Site Map' },
+]
 
 export function SiteFooter() {
   return (
@@ -21,8 +24,8 @@ export function SiteFooter() {
           <div className="col-span-2 lg:col-span-2">
             <Logo />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              Independent, research-backed rankings of the best agencies. No
-              pay-for-placement — just honest editorial reviews.
+              We have created this website to provide users or readers useful
+              and authentic information about the best agencies in the UK.
             </p>
             <div className="mt-5 flex items-center gap-3">
               <a

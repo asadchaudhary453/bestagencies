@@ -146,9 +146,6 @@ export default async function PostPage({
           <h1 className="mt-5 font-heading text-3xl font-bold leading-[1.1] tracking-tight text-balance sm:text-4xl lg:text-5xl">
             {post.title}
           </h1>
-          <p className="mt-5 text-pretty text-lg leading-relaxed text-muted-foreground">
-            {post.excerpt}
-          </p>
           <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
             {author && (
               <span className="flex items-center gap-2">

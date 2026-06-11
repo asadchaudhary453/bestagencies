@@ -16,58 +16,39 @@ const sections = [
     ],
   },
   {
-    heading: '2. Editorial independence',
-    body: [
-      'Our rankings and reviews are produced independently by our editorial team. We do not accept payment in exchange for ranking position. Where content is sponsored or contains affiliate links, this will be clearly disclosed.',
-      'Rankings represent our editorial opinion based on our stated methodology and are provided for general information only.',
-    ],
-  },
-  {
-    heading: '3. No professional advice',
-    body: [
-      'Content on the Site is for informational purposes and does not constitute professional, legal, financial or business advice. You should carry out your own due diligence before engaging any agency.',
-    ],
-  },
-  {
-    heading: '4. Third-party links',
-    body: [
-      'The Site contains links to third-party websites, including agency websites. We are not responsible for the content, products or services of any third party and the inclusion of a link does not imply endorsement.',
-    ],
-  },
-  {
-    heading: '5. Intellectual property',
+    heading: '2. Intellectual property',
     body: [
       `All content on the Site, including text, graphics, logos and images, is the property of ${SITE.name} or its content suppliers and is protected by applicable intellectual property laws. You may not reproduce or republish our content without written permission.`,
     ],
   },
   {
-    heading: '6. User submissions',
+    heading: '3. User submissions',
     body: [
       'If you submit content to us — such as a guest article or agency suggestion — you grant us a non-exclusive, royalty-free licence to use, edit and publish that content. You confirm that any content you submit is original and does not infringe the rights of others.',
     ],
   },
   {
-    heading: '7. Limitation of liability',
+    heading: '4. Limitation of liability',
     body: [
       `To the fullest extent permitted by law, ${SITE.name} shall not be liable for any loss or damage arising from your use of, or reliance on, the Site or its content.`,
     ],
   },
   {
-    heading: '8. Prohibited activities',
+    heading: '5. Prohibited activities',
     body: [
       'We do not work with companies involved in illegal activities or those associated with businesses such as essay writing, CBD, casinos, gambling, betting, dating, drugs, movies, songs, dances, insurance, mortgages, banking loans, or any other illegal activities. We reserve the right to cancel the order or terminate any agreement with any client who is found to be involved in such activities.',
       'If you are unsure if your site violates our restrictions, please contact us first.',
     ],
   },
   {
-    heading: '9. Changes to terms and conditions',
+    heading: '6. Changes to terms and conditions',
     body: [
       'We reserve the right to make changes to these terms and conditions at any time. Any changes will be posted on our website and will be effective immediately upon posting.',
       'By using our services, you agree to these terms and conditions. If you have any questions or concerns, please contact us.',
     ],
   },
   {
-    heading: '10. Contact',
+    heading: '7. Contact',
     body: [
       `If you have any questions about these terms, please contact us at ${SITE.email}.`,
     ],
