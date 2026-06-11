@@ -9,8 +9,11 @@ import {
 import { SITE } from '@/lib/site'
 import { PageHeader } from '@/components/layout/page-header'
 import { PostsGrid } from '@/components/posts/posts-grid'
+import { PostsPagination } from '@/components/posts/posts-pagination'
 import { AdvertisementCard } from '@/components/ads/advertisement-card'
 import { cn } from '@/lib/utils'
+
+const POSTS_PER_PAGE = 24
 
 export const metadata: Metadata = {
   title: 'All Categories & Rankings',
@@ -29,17 +32,27 @@ export const metadata: Metadata = {
 export default async function AgenciesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string }>
+  searchParams: Promise<{ category?: string; page?: string }>
 }) {
-  const { category } = await searchParams
+  const { category, page } = await searchParams
   const [counts, allPosts] = await Promise.all([
     getCategoryCounts(),
     getAllPosts(),
   ])
   const activeCategory = categories.find((c) => c.slug === category)
-  const posts = activeCategory
+  const filteredPosts = activeCategory
     ? await getPostsByCategory(activeCategory.slug)
     : allPosts
+
+  const totalPages = Math.max(1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE))
+  const currentPage = Math.min(
+    Math.max(1, Number.parseInt(page ?? '1', 10) || 1),
+    totalPages,
+  )
+  const posts = filteredPosts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE,
+  )
 
   return (
     <main>
@@ -75,6 +88,12 @@ export default async function AgenciesPage({
           ))}
         </div>
         <PostsGrid posts={posts} />
+        <PostsPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          basePath="/agencies"
+          searchParams={{ category }}
+        />
         <div className="mt-12">
           <AdvertisementCard variant="horizontal" />
         </div>
