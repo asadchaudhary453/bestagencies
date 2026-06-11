@@ -186,13 +186,33 @@ async function connect(): Promise<boolean> {
   }
 }
 
+/** True for transient network errors (e.g. a pooled connection that the
+ *  server closed under build-time load) that are safe to retry. */
+function isTransientError(error: unknown): boolean {
+  const name = (error as { name?: string })?.name ?? ''
+  return name === 'MongoNetworkError' || name === 'MongoNetworkTimeoutError'
+}
+
+/** Runs a query, retrying once after a short delay on transient errors. */
+async function withRetry<T>(run: () => Promise<T>): Promise<T> {
+  try {
+    return await run()
+  } catch (error) {
+    if (!isTransientError(error)) throw error
+    await new Promise((r) => setTimeout(r, 250))
+    return run()
+  }
+}
+
 export async function getAllPosts(): Promise<PostSummary[]> {
   if (!(await connect())) return []
   try {
-    const docs = await Blog.find(publishedFilter())
-      .select(SUMMARY_FIELDS)
-      .sort({ publishedAt: -1, createdAt: -1 })
-      .lean<BlogDoc[]>()
+    const docs = await withRetry(() =>
+      Blog.find(publishedFilter())
+        .select(SUMMARY_FIELDS)
+        .sort({ publishedAt: -1, createdAt: -1 })
+        .lean<BlogDoc[]>(),
+    )
     return docs.map(mapSummary)
   } catch (error) {
     console.error('[content] getAllPosts failed:', error)

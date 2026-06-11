@@ -59,6 +59,13 @@ async function dbConnect(): Promise<typeof mongoose | null> {
       // fall back to empty content instead of hanging for 30s per query.
       serverSelectionTimeoutMS: 5000,
       connectTimeoutMS: 5000,
+      // Keep the pool small. During `next build`, Next.js spawns many
+      // parallel workers and each one opens its own pool — with the
+      // default pool size of 10 a local mongod gets flooded and starts
+      // closing connections (MongoNetworkError: connection closed).
+      maxPoolSize: 5,
+      // Retry reads once automatically on transient network errors.
+      retryReads: true,
     };
 
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
